@@ -15,7 +15,7 @@ if ($method == 'fetch_request') {
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation, joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories, 
 	joms_po_process.target_approval_date_of_quotation, joms_po_process.approval_date_of_quotation, joms_po_process.target_date_submission_to_purchasing, joms_po_process.actual_date_of_submission_to_purchasing, joms_po_process.target_po_date, joms_po_process.po_date, joms_po_process.po_no, joms_po_process.ordering_additional_details, joms_po_process.supplier, joms_po_process.etd, joms_po_process.eta, joms_po_process.actual_arrival_date, joms_po_process.invoice_no, joms_po_process.classification, joms_po_process.remarks AS remarks2,
 	joms_installation.installation_date
-		FROM joms_request
+		 FROM joms_request
 		LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 		LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id
 		LEFT JOIN joms_installation ON joms_installation.request_id = joms_request.request_id";
@@ -75,6 +75,7 @@ if ($method == 'fetch_request') {
 			}
 			//displaying the data
 			echo '<tr>';
+		
 			echo '<td style = "' . $color . '">' . $c . '</td>';
 			echo '<td style = "' . $color . '">' . $j['status'] . '</td>';
 			echo '<td style = "' . $color . '">' . $j['carmaker'] . '</td>';

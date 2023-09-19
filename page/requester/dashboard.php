@@ -28,6 +28,9 @@
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title"></h3>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#add_request">
+             Add Request</a>
+              <button class="btn btn-danger ml-1">Cancel Request</button>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -53,6 +56,7 @@
                       <option value="open">Open</option>
                       <option value="ame3">Closed - AME3</option>
                       <option value="ame2">Closed - AME2</option>
+                      <option value="cancel">Cancelled</option>
                     </select>
                   </div>
                   <div class="col-sm-2">
