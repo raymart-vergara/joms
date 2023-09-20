@@ -28,9 +28,10 @@
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title"></h3>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#add_request">
+              <a href="#" class="btn btn-primary mr-1" data-toggle="modal" data-target="#add_request">
              Add Request</a>
-              <button class="btn btn-danger ml-1">Cancel Request</button>
+             <a href="#" class="btn btn-danger ml-1" data-toggle="modal" data-target="#cancel_request">
+             Cancel Request</a>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
