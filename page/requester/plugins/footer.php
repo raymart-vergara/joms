@@ -14,6 +14,7 @@ include '../../modals/import/request.php';
 include '../../modals/account/add_account.php';
 include '../../modals/account/update_account.php';
 include '../../modals/monitor/add_request.php';
+include '../../modals/monitor/cancel_request.php';
 ?>
 <!-- jQuery -->
 <!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->
