@@ -83,9 +83,7 @@ const get_checked_length = () => {
 $("#install_modal").on('hidden.bs.modal', e => {
 	$('#installation_date').val('');
 });
-
-const install = () => {
-
+const cancel_req = () => {
 	var arr = [];
 	$('input.singleCheck:checkbox:checked').each(function () {
 		arr.push($(this).val());

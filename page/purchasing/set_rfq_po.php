@@ -104,13 +104,17 @@
                           <div class="col-12 d-flex justify-content-between">
                             <div class="col-3">
                               <div class="input-group">
-                                <div class="input-group-prepend"> <label class="input-group-text"
+                                <button type="button" class="btn btn-danger" id="btnCancel" data-toggle="modal"disabled
+                                  data-target="#cancel_request" >
+                                  Cancel Request</button>
+                                <div class="input-group-prepend ml-3"> <label class="input-group-text"
                                     for="inputGroupSelect01">Status</label> </div>
                                 <select class="custom-select text-center" onchange="filter_rfq_process()" required
                                   id="rfq_status_search">
                                   <option selected value="open_all">RFQ Process</option>
                                   <option value="open_initial">Initial RFQ</option>
                                   <option value="open_complete">Compelete RFQ</option>
+                                  <option value="cancelled">Cancelled</option>
                                 </select>
                               </div>
                             </div>
@@ -128,11 +132,14 @@
                               id="list_of_uploaded_request_with_po_table">
                               <thead style="text-align:center;">
                                 <tr>
-                                  <th colspan="15" class="bg-secondary">Request</th>
+                                  <th colspan="16" class="bg-secondary">Request</th>
                                   <th colspan="12" class="bg-light">RFQ Process</th>
                                   <th colspan="15" class="bg-secondary">PO Process</th>
                                 </tr>
                                 <tr>
+                                <th>
+                            <input type="checkbox" name="" id="cancel_check_all" onclick="select_all_func()">
+                          </th>
                                   <th>#</th>
                                   <th>Status</th>
                                   <th>Car Maker</th>
