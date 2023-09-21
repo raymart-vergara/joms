@@ -28,10 +28,8 @@
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title"></h3>
-              <a href="#" class="btn btn-primary mr-1" data-toggle="modal" data-target="#add_request">
-             Add Request</a>
-             <a href="#" class="btn btn-danger ml-1" data-toggle="modal" data-target="#cancel_request">
-             Cancel Request</a>
+             <button type="button" class="btn btn-danger ml-1" id="btnCancel" data-toggle="modal" data-target="#cancel_request" disabled>
+             Cancel Request</button>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -57,7 +55,7 @@
                       <option value="open">Open</option>
                       <option value="ame3">Closed - AME3</option>
                       <option value="ame2">Closed - AME2</option>
-                      <option value="cancel">Cancelled</option>
+                      <option value="cancelled">Cancelled</option>
                     </select>
                   </div>
                   <div class="col-sm-2">
@@ -76,12 +74,15 @@
                         id="list_of_request_table">
                         <thead style="text-align:center;">
                           <tr>
-                            <th colspan="15" class="bg-secondary">Request</th>
+                            <th colspan="16" class="bg-secondary">Request</th>
                             <th colspan="12" class="bg-light">RFQ Process</th>
                             <th colspan="15" class="bg-secondary">PO Process</th>
                             <th colspan="1" class="bg-light">Installation</th>
                           </tr>
                           <tr>
+                          <th>
+                            <input type="checkbox" name="" id="cancel_check_all" onclick="select_all_func()">
+                          </th>
                             <th>#</th>
                             <th>Status</th>
                             <th>Car Maker</th>
