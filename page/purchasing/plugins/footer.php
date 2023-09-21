@@ -18,6 +18,7 @@ include '../../modals/export/rfq_po.php';
 include '../../modals/import/rfq_po.php';
 include '../../modals/account/add_account.php';
 include '../../modals/account/update_account.php';
+include '../../modals/monitor/cancel_request.php';
 ?>
 <!-- jQuery -->
 <!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->

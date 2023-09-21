@@ -46,7 +46,7 @@
       </div> -->
             <div class="modal-footer mb-1 pb-1">
                 <a href="#" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                <a href="#" class="btn btn-danger" onclick="install()">Confirmn </a>
+                <a href="#" class="btn btn-danger" onclick="cancel_req()">Confirmn </a>
             </div>
         </div>
     </div>
