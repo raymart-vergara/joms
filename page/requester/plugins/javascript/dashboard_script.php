@@ -38,6 +38,22 @@
         });
     }
 
+	const get_cancel_details = (param) => {
+        var string = param.split('~!~');
+        var request_id = string[0];
+        var cancel_date = string[1];
+        var cancel_reason = string[2];
+        var cancel_by = string[3];
+        var cancel_section = string[4];
+
+        document.getElementById('id_cancel_request').value = request_id;
+        document.getElementById('cancel_reason_details').value = cancel_reason;
+        document.getElementById('cancel_by_details').value = cancel_by;
+        document.getElementById('cancel_section_details').value = cancel_section;
+        document.getElementById('cancel_date_details').value = cancel_date;
+
+    }
+
      // check all and uncheck
  const uncheck_all = () => {
 	var select_all = document.getElementById('cancel_check_all');
