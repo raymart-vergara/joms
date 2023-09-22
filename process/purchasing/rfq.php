@@ -24,11 +24,13 @@ if ($method == 'fetch_requested_processed') {
 			$disable_row = '';
 			if ($request_status == 'cancelled') {
 				$disable_row = 'disabled';
+				$cursor = 'cursor:pointer';
+				$class_mods = 'modal-trigger" data-toggle="modal" data-target="#cancel_info_modal';
 			}
 			echo '<input type="checkbox" class="singleCheck bg-secondary" value="' . $j['request_id'] . '" onclick="get_checked_length()" ' . $disable_row . '>';
 			echo '</td>';
 			echo '<td>' . $c . '</td>';
-			echo '<td>' . $j['status'] . '</td>';
+			echo '<td style = " '.$color. $cursor. '"  class="'.$class_mods.'" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] .'~!~' . $j['cancel_section'] .'&quot;)">' . $j['status'] . '</td>';
 			echo '<td>' . $j['carmaker'] . '</td>';
 			echo '<td>' . $j['carmodel'] . '</td>';
 			echo '<td>' . $j['product'] . '</td>';
@@ -214,14 +216,12 @@ if ($method == 'filter_rfq_process') {
 			echo '<td>' . $j['fsib_code'] . '</td>';
 			echo '<td>' . $j['date_sent_to_internal_signatories'] . '</td>';
 
-
-
 			echo '</tr>';
 		}
 	}
 
 	$query = "SELECT joms_request.request_id, joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type,
-	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks,
+	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks, joms_request.cancel_date, joms_request.cancel_reason, joms_request.cancel_by, joms_request.cancel_section,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation , joms_rfq_process.leadtime, joms_rfq_process.quotation_no,
 	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
 	FROM joms_request
@@ -236,11 +236,17 @@ if ($method == 'filter_rfq_process') {
 			$disable_row = '';
 			if ($rfq_status_search == 'cancelled') {
 				$disable_row = 'disabled';
+				$cursor = 'cursor:pointer';
+				$class_mods = 'modal-trigger" data-toggle="modal" data-target="#cancel_info_modal';
+			} else {
+				$cursor = "";
+				$class_mods= "";
 			}
+			
 			echo '<input type="checkbox" class="singleCheck bg-secondary" value="' . $j['request_id'] . '" onclick="get_checked_length()" ' . $disable_row . '>';
 			echo '</td>';
 			echo '<td>' . $c . '</td>';
-			echo '<td>' . $j['status'] . '</td>';
+			echo '<td style = " '.$color. $cursor. '"  class="'.$class_mods.'" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] .'~!~' . $j['cancel_section'] .'&quot;)">' . $j['status'] . '</td>';
 			echo '<td>' . $j['carmaker'] . '</td>';
 			echo '<td>' . $j['carmodel'] . '</td>';
 			echo '<td>' . $j['product'] . '</td>';
