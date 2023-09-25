@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2023 at 07:10 AM
+-- Generation Time: Sep 22, 2023 at 08:13 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -35,14 +35,6 @@ CREATE TABLE `joms_installation` (
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `joms_installation`
---
-
-INSERT INTO `joms_installation` (`id`, `request_id`, `installation_date`, `set_by`, `date_updated`) VALUES
-(1, 'JOMS:230915126190e', '2023-09-23', 'jj', '2023-09-15 12:28:20'),
-(2, 'JOMS:2309151274b99', '2023-09-23', 'jj', '2023-09-15 12:28:20');
-
 -- --------------------------------------------------------
 
 --
@@ -67,23 +59,9 @@ CREATE TABLE `joms_po_process` (
   `invoice_no` varchar(100) DEFAULT NULL,
   `classification` varchar(100) DEFAULT NULL,
   `remarks` varchar(100) DEFAULT NULL,
-  `uploaded_by` varchar(255) NOT NULL,
+  `po_uploaded_by` varchar(255) NOT NULL,
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `joms_po_process`
---
-
-INSERT INTO `joms_po_process` (`id`, `request_id`, `target_approval_date_of_quotation`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `ordering_additional_details`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`, `classification`, `remarks`, `uploaded_by`, `date_updated`) VALUES
-(1, 'JOMS:230915126190e', '2023-09-24', '2023-09-24', '2023-09-24', '2023-09-24', '2023-09-24', '2023-09-24', 'asd1', 'asd1', 'FAS', '2023-09-24', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-24', '2023-09-24', 'jj', '2023-09-15 12:22:55'),
-(2, 'JOMS:2309151274b99', '2023-09-25', '2023-09-25', '2023-09-25', '2023-09-25', '2023-09-25', '2023-09-25', 'asd1', 'asd1', 'FAS', '2023-09-25', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-25', '2023-09-25', 'jj', '2023-09-15 12:22:55'),
-(3, 'JOMS:23091512322db', '2023-09-26', '2023-09-26', '2023-09-26', '2023-09-26', '2023-09-26', '2023-09-26', 'asd1', 'asd1', 'FAS', '2023-09-26', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-26', '2023-09-26', 'jj', '2023-09-15 12:22:55'),
-(4, 'JOMS:230915126fea3', '2023-09-27', '2023-09-27', '2023-09-27', '2023-09-27', '2023-09-27', '2023-09-27', 'asd1', 'asd1', 'FAS', '2023-09-27', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-27', '2023-09-27', 'jj', '2023-09-15 12:22:55'),
-(5, 'JOMS:23091512603b6', '2023-09-28', '2023-09-28', '2023-09-28', '2023-09-28', '2023-09-28', '2023-09-28', 'asd1', 'asd1', 'FAS', '2023-09-28', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-28', '2023-09-28', 'jj', '2023-09-15 12:22:55'),
-(6, 'JOMS:2309151216938', '2023-09-29', '2023-09-29', '2023-09-29', '2023-09-29', '2023-09-29', '2023-09-29', 'asd1', 'asd1', 'FAS', '2023-09-29', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-29', '2023-09-29', 'jj', '2023-09-15 12:22:55'),
-(7, 'JOMS:230915123ce38', '2023-09-30', '2023-09-30', '2023-09-30', '2023-09-30', '2023-09-30', '2023-09-30', 'asd1', 'asd1', 'FAS', '2023-09-30', 'hahaaaa', '2023-09-28', 'FAS', '2023-09-30', '2023-09-30', 'jj', '2023-09-15 12:22:55'),
-(8, 'JOMS:2309151269671', '2023-10-01', '2023-10-01', '2023-10-01', '2023-10-01', '2023-10-01', '2023-10-01', 'asd1', 'asd1', 'FAS', '2023-10-01', 'hahaaaa', '2023-09-28', 'FAS', '2023-10-01', '2023-10-01', 'jj', '2023-09-15 12:22:55');
 
 -- --------------------------------------------------------
 
@@ -109,26 +87,12 @@ CREATE TABLE `joms_request` (
   `required_delivery_date` date DEFAULT NULL,
   `remarks` varchar(100) DEFAULT NULL,
   `uploaded_by` varchar(255) NOT NULL,
-  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `cancel_date` date DEFAULT NULL,
+  `cancel_reason` varchar(255) NOT NULL,
+  `cancel_by` varchar(255) NOT NULL,
+  `cancel_section` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `joms_request`
---
-
-INSERT INTO `joms_request` (`id`, `request_id`, `status`, `carmaker`, `carmodel`, `product`, `jigname`, `drawing_no`, `type`, `qty`, `purpose`, `budget`, `date_requested`, `requested_by`, `required_delivery_date`, `remarks`, `uploaded_by`, `date_updated`) VALUES
-(1, 'JOMS:230915126190e', 'closed', 'Mazda', 'J12S RHD', '50', 'EA15', '', 'Metal Parts', 100, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'haha', 'jj', '2023-09-15 12:19:03'),
-(2, 'JOMS:2309151274b99', 'closed', 'Mazda', 'J12S RHD', '50', 'EA20', '', 'Metal Parts', 225, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'gege', 'jj', '2023-09-15 12:21:08'),
-(3, 'JOMS:23091512322db', 'closed', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'hehe', 'jj', '2023-09-15 12:21:08'),
-(4, 'JOMS:230915126fea3', 'closed', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'hhiji', 'jj', '2023-09-15 12:21:08'),
-(5, 'JOMS:23091512603b6', 'closed', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'huhu', 'jj', '2023-09-15 12:21:08'),
-(6, 'JOMS:2309151216938', 'closed', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'hekhek', 'jj', '2023-09-15 12:21:08'),
-(7, 'JOMS:230915123ce38', 'closed', 'Mazda', 'J12S RHD', '50', 'EA15', '', 'Metal Parts', 100, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'haha', 'jj', '2023-09-15 12:21:08'),
-(8, 'JOMS:2309151269671', 'closed', 'Mazda', 'J12S RHD', '50', 'EA20', '', 'Metal Parts', 225, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'gege', 'jj', '2023-09-15 12:21:08'),
-(9, 'JOMS:23091512ab81a', 'open', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'hehe', 'jj', '2023-09-15 12:07:32'),
-(10, 'JOMS:23091512c4111', 'open', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'hhiji', 'jj', '2023-09-15 12:07:32'),
-(11, 'JOMS:230915126be90', 'pending', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'huhu', 'jj', '2023-09-15 12:02:31'),
-(12, 'JOMS:2309151274c69', 'pending', 'Mazda', 'J12S RHD', '50', 'EA20H', '', 'Metal Parts', 15, 'EV-MP Set up', 23017000, '2023-08-24', 'imat', '2023-09-24', 'hekhek', 'jj', '2023-09-15 12:02:31');
 
 -- --------------------------------------------------------
 
@@ -156,22 +120,6 @@ CREATE TABLE `joms_rfq_process` (
   `fsib_code` varchar(255) NOT NULL,
   `date_sent_to_internal_signatories` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `joms_rfq_process`
---
-
-INSERT INTO `joms_rfq_process` (`id`, `request_id`, `date_of_issuance_rfq`, `rfq_no`, `target_date_reply_quotation`, `i_uploaded_by`, `i_date_updated`, `date_reply_quotation`, `leadtime`, `quotation_no`, `unit_price_jpy`, `unit_price_usd`, `total_amount`, `c_uploaded_by`, `c_date_updated`, `fsib_no`, `fsib_code`, `date_sent_to_internal_signatories`) VALUES
-(1, 'JOMS:230915126190e', '2023-09-24', 'asdas', '2023-09-24', 'jj', '2023-09-15 12:07:31', '2023-09-24', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-24'),
-(2, 'JOMS:2309151274b99', '2023-09-25', 'asdas', '2023-09-25', 'jj', '2023-09-15 12:07:31', '2023-09-25', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-25'),
-(3, 'JOMS:23091512322db', '2023-09-26', 'asdas', '2023-09-26', 'jj', '2023-09-15 12:07:31', '2023-09-26', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-26'),
-(4, 'JOMS:230915126fea3', '2023-09-27', 'asdas', '2023-09-27', 'jj', '2023-09-15 12:07:31', '2023-09-27', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-27'),
-(5, 'JOMS:23091512603b6', '2023-09-28', 'asdas', '2023-09-28', 'jj', '2023-09-15 12:07:31', '2023-09-28', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-28'),
-(6, 'JOMS:2309151216938', '2023-09-29', 'asdas', '2023-09-29', 'jj', '2023-09-15 12:07:31', '2023-09-29', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-29'),
-(7, 'JOMS:230915123ce38', '2023-09-30', 'asdas', '2023-09-30', 'jj', '2023-09-15 12:07:31', '2023-09-30', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-09-30'),
-(8, 'JOMS:2309151269671', '2023-10-01', 'asdas', '2023-10-01', 'jj', '2023-09-15 12:07:32', '2023-10-01', 'asda', 'asdasd', '1123', '123123', 12312, 'jj', '2023-09-15 12:10:00', 'asdasd1', 'asdasd1', '2023-10-01'),
-(9, 'JOMS:23091512ab81a', '2023-10-02', 'asdas', '2023-10-02', 'jj', '2023-09-15 12:07:32', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL),
-(10, 'JOMS:23091512c4111', '2023-10-03', 'asdas', '2023-10-03', 'jj', '2023-09-15 12:07:32', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -230,13 +178,15 @@ INSERT INTO `user_accounts` (`id`, `fullname`, `username`, `password`, `section`
 -- Indexes for table `joms_installation`
 --
 ALTER TABLE `joms_installation`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `joms_po_process`
 --
 ALTER TABLE `joms_po_process`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `joms_request`
@@ -249,7 +199,8 @@ ALTER TABLE `joms_request`
 -- Indexes for table `joms_rfq_process`
 --
 ALTER TABLE `joms_rfq_process`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `notif_joms_request`
@@ -272,25 +223,25 @@ ALTER TABLE `user_accounts`
 -- AUTO_INCREMENT for table `joms_installation`
 --
 ALTER TABLE `joms_installation`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `joms_po_process`
 --
 ALTER TABLE `joms_po_process`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `joms_request`
 --
 ALTER TABLE `joms_request`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `joms_rfq_process`
 --
 ALTER TABLE `joms_rfq_process`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notif_joms_request`

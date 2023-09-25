@@ -105,6 +105,7 @@
                               <th>Requested By </th>
                               <th>Required Delivery Date </th>
                               <th>Remarks (fill up if ECT jig is under new design, supplier) </th>
+                              <th>Upload By</th>
                             </tr>
                           </thead>
                           <tbody id="list_of_uploaded_request" style="text-align:center;">

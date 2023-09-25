@@ -57,10 +57,14 @@ if (isset($_POST['upload'])) {
                     // IF BLANK DETECTED ERROR += 1
                     $error = $error + 1;
                 } else {
-                    $date_r = DateTime::createFromFormat('Y-m-d', $date_requested);
-                    $date_requested = $date_r->format('Y-m-d');
-                    $date_rdd = DateTime::createFromFormat('Y-m-d', $required_delivery_date);
-                    $required_delivery_date = $date_rdd->format('Y-m-d');
+                    $date_r = str_replace('/', '-', $date_requested);
+                    $date_requested = date("Y-m-d", strtotime($date_r));
+
+                    $date_rdd = str_replace('/', '-', $required_delivery_date);
+                    $required_delivery_date = date("Y-m-d", strtotime($date_rdd));
+
+                    // $date_rdd = DateTime::createFromFormat('Y-m-d', $required_delivery_date);
+                    // $required_delivery_date = $date_rdd->format('Y-m-d');
 
                     // if (preg_match("/([0-9]{4})\/([0-9]{2})\/([0-9]{2})/", $date_requested, $matches)) {
                     //     if (!checkdate($matches[2], $matches[1], $matches[3])) {
