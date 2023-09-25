@@ -41,22 +41,21 @@ if (isset($_POST['upload'])) {
                 $rfq_no = $line[16];
                 $target_date_reply_quotation = $line[17];
 
-                // $date_reply_quotation = $line[17];
-                // $leadtime = $line[18];
-                // $quotation_no = $line[19];
-                // $unit_price_jpy = $line[20];
-                // $unit_price_usd = $line[21];
-                // $total_amount = $line[22];
-
                 // CHECK IF BLANK DATA
                 if ($line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' || $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' || $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '') {
                     // IF BLANK DETECTED ERROR += 1
                     $error = $error + 1;
                 } else {
-                    $date_i_rfq = DateTime::createFromFormat('Y-m-d', $date_of_issuance_rfq);
-                    $date_of_issuance_rfq = $date_i_rfq->format('Y-m-d');
-                    $date_tdrq = DateTime::createFromFormat('Y-m-d', $target_date_reply_quotation);
-                    $target_date_reply_quotation = $date_tdrq->format('Y-m-d');
+                    $date_i_rfq = str_replace('/', '-', $date_of_issuance_rfq);
+                    $date_of_issuance_rfq = date("Y-m-d", strtotime($date_i_rfq));
+
+                    $date_tdrq = str_replace('/', '-', $target_date_reply_quotation);
+                    $target_date_reply_quotation = date("Y-m-d", strtotime($date_tdrq));
+
+                    // $date_i_rfq = DateTime::createFromFormat('Y-m-d', $date_of_issuance_rfq);
+                    // $date_of_issuance_rfq = $date_i_rfq->format('Y-m-d');
+                    // $date_tdrq = DateTime::createFromFormat('Y-m-d', $target_date_reply_quotation);
+                    // $target_date_reply_quotation = $date_tdrq->format('Y-m-d');
                   
 
                     // CHECK DATA

@@ -53,10 +53,12 @@ if (isset($_POST['upload'])) {
                 $date_sent_to_internal_signatories = $line[26];
 
                 // CHECK IF BLANK DATA
-                if ($line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' || 
-                    $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' || 
-                    $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '' || $line[18] == '' || $line[19] == '' || 
-                    $line[20] == '' || $line[21] == '' || $line[22] == '' || $line[23] == '' || $line[24] == '' || $line[25] == '' || $line[26] == '') {
+                if (
+                    $line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' ||
+                    $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' ||
+                    $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '' || $line[18] == '' || $line[19] == '' ||
+                    $line[20] == '' || $line[21] == '' || $line[22] == '' || $line[23] == '' || $line[24] == '' || $line[25] == '' || $line[26] == ''
+                ) {
                     // IF BLANK DETECTED ERROR += 1
                     $error = $error + 1;
                 } else {
@@ -64,11 +66,19 @@ if (isset($_POST['upload'])) {
                     //$date_of_issuance_rfq = $date_i_rfq->format('Y-m-d');
                     //$date_tdrq = DateTime::createFromFormat('m/d/Y', $target_date_reply_quotation);
                     //$target_date_reply_quotation = $date_tdrq->format('Y-m-d');
-                    $date_rq = DateTime::createFromFormat('Y-m-d', $date_reply_quotation);
-                    $date_reply_quotation = $date_rq->format('Y-m-d');
 
-                    $date_dis = DateTime::createFromFormat('Y-m-d', $date_sent_to_internal_signatories);
-                    $date_sent_to_internal_signatories = $date_dis->format('Y-m-d');
+                    $date_rq = str_replace('/', '-', $date_reply_quotation);
+                    $date_reply_quotation = date("Y-m-d", strtotime($date_rq));
+
+                    // $date_rq = DateTime::createFromFormat('Y-m-d', $date_reply_quotation);
+                    // $date_reply_quotation = $date_rq->format('Y-m-d');
+
+                    $date_dis = str_replace('/', '-', $date_sent_to_internal_signatories);
+                    $date_sent_to_internal_signatories = date("Y-m-d", strtotime($date_dis));
+                    echo $date_sent_to_internal_signatories;
+
+                    // $date_dis = DateTime::createFromFormat('Y-m-d', $date_sent_to_internal_signatories);
+                    // $date_sent_to_internal_signatories = $date_dis->format('Y-m-d');
 
                     // CHECK DATA
                     $prevQuery = "SELECT request_id FROM joms_request WHERE request_id = '$request_id' AND status = 'open'";

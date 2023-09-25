@@ -80,24 +80,44 @@ if (isset($_POST['upload'])) {
                     // IF BLANK DETECTED ERROR += 1
                     $error = $error + 1;
                 } else {
+                    $date_tadoq = str_replace('/', '-', $target_approval_date_of_quotation);
+                    $target_approval_date_of_quotation = date("Y-m-d", strtotime($date_tadoq));
 
-                    $date_tadoq = DateTime::createFromFormat('Y-m-d', $target_approval_date_of_quotation);
-                    $target_approval_date_of_quotation = $date_tadoq->format('Y-m-d');
+                    $date_adoq = str_replace('/', '-', $approval_date_of_quotation);
+                    $approval_date_of_quotation = date("Y-m-d", strtotime($date_adoq));
 
-                    $date_adoq = DateTime::createFromFormat('Y-m-d', $approval_date_of_quotation);
-                    $approval_date_of_quotation = $date_adoq->format('Y-m-d');
+                    $date_tdstp = str_replace('/', '-', $target_date_submission_to_purchasing);
+                    $target_date_submission_to_purchasing = date("Y-m-d", strtotime($date_tdstp));
 
-                    $date_tdstp = DateTime::createFromFormat('Y-m-d', $target_date_submission_to_purchasing);
-                    $target_date_submission_to_purchasing = $date_tdstp->format('Y-m-d');
+                    $date_adostp = str_replace('/', '-', $actual_date_of_submission_to_purchasing);
+                    $actual_date_of_submission_to_purchasing = date("Y-m-d", strtotime($date_adostp));
 
-                    $date_adostp = DateTime::createFromFormat('Y-m-d', $actual_date_of_submission_to_purchasing);
-                    $actual_date_of_submission_to_purchasing = $date_adostp->format('Y-m-d');
+                    $date_tpd = str_replace('/', '-', $target_po_date);
+                    $target_po_date = date("Y-m-d", strtotime($date_tpd));
 
-                    $date_tpd = DateTime::createFromFormat('Y-m-d', $target_po_date);
-                    $target_po_date = $date_tpd->format('Y-m-d');
+                    $date_pd = str_replace('/', '-', $po_date);
+                    $po_date = date("Y-m-d", strtotime($date_pd));
 
-                    $date_pd = DateTime::createFromFormat('Y-m-d', $po_date);
-                    $po_date = $date_pd->format('Y-m-d');
+                    $date_aad = str_replace('/', '-', $actual_arrival_date);
+                    $actual_arrival_date = date("Y-m-d", strtotime($date_aad));
+
+                    // $date_tadoq = DateTime::createFromFormat('Y-m-d', $target_approval_date_of_quotation);
+                    // $target_approval_date_of_quotation = $date_tadoq->format('Y-m-d');
+
+                    // $date_adoq = DateTime::createFromFormat('Y-m-d', $approval_date_of_quotation);
+                    // $approval_date_of_quotation = $date_adoq->format('Y-m-d');
+
+                    // $date_tdstp = DateTime::createFromFormat('Y-m-d', $target_date_submission_to_purchasing);
+                    // $target_date_submission_to_purchasing = $date_tdstp->format('Y-m-d');
+
+                    // $date_adostp = DateTime::createFromFormat('Y-m-d', $actual_date_of_submission_to_purchasing);
+                    // $actual_date_of_submission_to_purchasing = $date_adostp->format('Y-m-d');
+
+                    // $date_tpd = DateTime::createFromFormat('Y-m-d', $target_po_date);
+                    // $target_po_date = $date_tpd->format('Y-m-d');
+
+                    // $date_pd = DateTime::createFromFormat('Y-m-d', $po_date);
+                    // $po_date = $date_pd->format('Y-m-d');
 
                     // $date_sou = DateTime::createFromFormat('m/d/Y', $start_of_usage);
                     // $start_of_usage = $date_sou->format('Y-m-d');
@@ -105,8 +125,8 @@ if (isset($_POST['upload'])) {
                     // $date_rdd = DateTime::createFromFormat('m/d/Y', $required_delivery_date2);
                     // $required_delivery_date2 = $date_rdd->format('Y-m-d');
 
-                    $date_aad = DateTime::createFromFormat('Y-m-d', $actual_arrival_date);
-                    $actual_arrival_date = $date_aad->format('Y-m-d');
+                    // $date_aad = DateTime::createFromFormat('Y-m-d', $actual_arrival_date);
+                    // $actual_arrival_date = $date_aad->format('Y-m-d');
 
                     // $date_r = DateTime::createFromFormat('m/d/Y', $date_requested);
                     // $date_requested = $date_r->format('Y-m-d');
@@ -124,7 +144,7 @@ if (isset($_POST['upload'])) {
                         foreach ($res->fetchALL() as $x) {
                             $id = $x['id'];
                         }
-                        $insert = "INSERT INTO joms_po_process(`request_id`, `target_approval_date_of_quotation`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `ordering_additional_details`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`, `classification`, `remarks`, `uploaded_by`) 
+                        $insert = "INSERT INTO joms_po_process(`request_id`, `target_approval_date_of_quotation`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `ordering_additional_details`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`, `classification`, `remarks`, `po_uploaded_by`) 
                                     VALUES ('$request_id', '$target_approval_date_of_quotation', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no', '$ordering_additional_details', '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$classification', '$remarks2', '" . $_SESSION['fullname'] . "')";
                         $stmt = $conn->prepare($insert);
                         if ($stmt->execute()) {
@@ -169,7 +189,7 @@ if (isset($_POST['upload'])) {
                                         invoice_no = '$invoice_no',
                                         classification = '$classification',
                                         remarks = '$remarks2', 
-                                        uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
+                                        po_uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
                                 $stmt = $conn->prepare($query);
                                 if ($stmt->execute()) {
                                     $error = 0;
