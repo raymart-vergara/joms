@@ -75,7 +75,7 @@ if (isset($_POST['upload'])) {
 
                     $date_dis = str_replace('/', '-', $date_sent_to_internal_signatories);
                     $date_sent_to_internal_signatories = date("Y-m-d", strtotime($date_dis));
-                    echo $date_sent_to_internal_signatories;
+                
 
                     // $date_dis = DateTime::createFromFormat('Y-m-d', $date_sent_to_internal_signatories);
                     // $date_sent_to_internal_signatories = $date_dis->format('Y-m-d');
