@@ -9,15 +9,16 @@
         </button>
       </div>
       <div class="modal-body mt-2">
-
         <div class="row">
-          <div class="col-5 text-center">
-            <div>
-              <h4>Installation Date:</h4>
-            </div>
+          <div class="col-12">
+          <label>Line Number:</label>
+            <input type="text" id="line_no" class="form-control">
           </div>
-          <div class="col-6 text-center">
-            <input type="date" id="installation_date" class="form-control">
+          <div class="col-6 mt-3">
+            <div>
+              <label>Installation Date:</label>
+              <input type="date" id="installation_date" class="form-control">
+            </div>
           </div>
           <div class="col-11 text-center mt-2 d-flex justify-content-end">
             <span class="p">Number of Checked:</span>
