@@ -79,7 +79,7 @@
                         <th colspan="17" class="bg-secondary">Request</th>
                             <th colspan="14" class="bg-light">RFQ Process</th>
                             <th colspan="16" class="bg-secondary">PO Process</th>
-                            <th colspan="2" class="bg-light">Installation</th>
+                            <th colspan="3" class="bg-light">Installation</th>
                         </tr>
                         <tr>
                           <th>
@@ -135,6 +135,7 @@
                           <th>Remarks </th>
                           <th>Uploaded By</th>
 
+                          <th>Line Number</th>
                           <th>Installation Date</th>
                           <th>Uploaded By</th>
                         </tr>
@@ -203,7 +204,7 @@
                             <th colspan="16" class="bg-secondary">Request</th>
                             <th colspan="14" class="bg-light">RFQ Process</th>
                             <th colspan="16" class="bg-secondary">PO Process</th>
-                            <th colspan="2" class="bg-light">Installation</th>
+                            <th colspan="3" class="bg-light">Installation</th>
                           </tr>
                           <tr>
                           <th>#</th>
@@ -256,6 +257,7 @@
                           <th>Remarks </th>
                           <th>Uploaded By</th>
 
+                          <th>Line Number</th>
                           <th>Installation Date</th>
                           <th>Uploaded By</th>
                           </tr>

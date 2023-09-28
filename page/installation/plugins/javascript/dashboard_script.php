@@ -99,16 +99,25 @@
         });
 
         var installation_date = document.getElementById('installation_date').value;
+        var line_no = document.getElementById('line_no').value;
 
         if (installation_date == '') {
             Swal.fire({
                 icon: 'info',
-                title: 'Please Select Date of Installation !!!',
+                title: 'Please Select Date of Installation !',
                 text: 'Information',
                 showConfirmButton: false,
                 timer: 1000
             });
-        } else {
+        } else if (line_no == '') {
+            Swal.fire({
+                icon: 'info',
+                title: 'Please Insert Line Number !',
+                text: 'Information',
+                showConfirmButton: false,
+                timer: 1000
+            });
+        }else {
 
             var numberOfChecked = arr.length;
             if (numberOfChecked > 0) {
@@ -120,7 +129,8 @@
                     data: {
                         method: 'install',
                         id: arr,
-                        installation_date: installation_date
+                        installation_date: installation_date,
+                        line_no : line_no
                     }, success: function (response) {
                         console.log(response);
                         Swal.fire({
@@ -131,6 +141,7 @@
                             timer: 1000
                         });
                         $('#installation_date').val('');
+                        $('#line_no').val('');
                         search_request();
                         search_request2();
                         $('#install_modal').modal('hide');
