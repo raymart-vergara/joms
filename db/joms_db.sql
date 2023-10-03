@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 08:13 AM
+-- Generation Time: Oct 03, 2023 at 02:40 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -32,7 +32,8 @@ CREATE TABLE `joms_installation` (
   `request_id` varchar(255) DEFAULT NULL,
   `installation_date` date DEFAULT NULL,
   `set_by` varchar(255) NOT NULL,
-  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `line_no` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -163,12 +164,29 @@ INSERT INTO `user_accounts` (`id`, `fullname`, `username`, `password`, `section`
 (1, 'jj', 'req', 'admin', 'mppd1', 'admin'),
 (2, 'jj', 'ame3', 'admin', 'ame3', 'admin'),
 (3, 'jj', 'ame2', 'admin', 'ame2', 'admin'),
-(4, 'req2', 'req2', 'admin', 'mppd1', 'admin'),
 (5, 'req-user1', 'req-user1', 'user', 'mppd1', 'user'),
 (6, 'ame2user1', 'ame2user1', 'user', 'ame2', 'user'),
 (7, 'ame3user1', 'ame3user1', 'user', 'ame3', 'user'),
-(8, 'ame3user2', 'ame3user2', 'user', 'ame3', 'user'),
-(9, 'ame3user3', 'ame3user3', 'user', 'ame3', 'user');
+(11, 'Renalyn Carandang', 'rcarandang', 'admin', 'mppd1', 'admin'),
+(12, 'Marvin Cuevas', 'mcuevas', 'admin', 'mppd1', 'admin'),
+(13, 'Nancy Axalan', 'naxalan', 'admin', 'mppd1', 'admin'),
+(14, 'Angelo Malabanan', 'amalabanan', 'admin', 'mppd1', 'user'),
+(15, 'Ivan Chester Bocateja', 'ibocateja', 'admin', 'mppd1', 'user'),
+(16, 'Allieza Ghem Mendoza', 'amendoza', 'admin', 'mppd1', 'user'),
+(17, 'Krizza Mae De Grano', 'kgrano', 'admin', 'mppd1', 'user'),
+(18, 'Rodolfo Rivera', 'rrivera', 'admin', 'mppd1', 'user'),
+(19, 'Mary Charisse Moreno', 'mmoreno', 'admin', 'mppd1', 'user'),
+(20, 'Rolynda Lat', 'rlat', 'admin', 'mppd1', 'user'),
+(21, 'Rey John Señorin', 'rsenorin', 'admin', 'mppd1', 'user'),
+(22, 'Manumbas Paula Bianca M', 'pmanumbas', 'admin', 'ame3', 'admin'),
+(23, 'Villareal Rose Angelyn A', 'ravillareal', 'admin', 'ame3', 'admin'),
+(24, 'Luceño Marielle T', 'mluceno', 'admin', 'ame3', 'user'),
+(25, 'Alvarado Hana Rose N', 'halvarado', 'admin', 'ame3', 'user'),
+(26, 'Malabo Rosemarie', 'rmalabo', 'admin', 'ame3', 'user'),
+(27, 'Marisol Gulang', 'mgulang', 'admin', 'ame3', 'user'),
+(28, 'Edgar Alacantara', '13-0510', 'garneth01', 'ame2', 'admin'),
+(29, 'Shawn Michael Magsino', '21-05943', '21-05943', 'ame2', 'admin'),
+(30, 'Kim Aldrich Servidad', '22-08211', '22-08211', 'ame2', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -194,13 +212,6 @@ ALTER TABLE `joms_po_process`
 ALTER TABLE `joms_request`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `request_id` (`request_id`);
-
---
--- Indexes for table `joms_rfq_process`
---
-ALTER TABLE `joms_rfq_process`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `notif_joms_request`
@@ -238,12 +249,6 @@ ALTER TABLE `joms_request`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `joms_rfq_process`
---
-ALTER TABLE `joms_rfq_process`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `notif_joms_request`
 --
 ALTER TABLE `notif_joms_request`
@@ -253,7 +258,7 @@ ALTER TABLE `notif_joms_request`
 -- AUTO_INCREMENT for table `user_accounts`
 --
 ALTER TABLE `user_accounts`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
