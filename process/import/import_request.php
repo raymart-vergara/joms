@@ -78,7 +78,7 @@ if (isset($_POST['upload'])) {
                     $request_id = '';
                     $request_id = generate_joms_request_id($request_id);
                     
-                    $insert = "INSERT INTO joms_request(`request_id`, `carmaker`, `carmodel`, `product`, `jigname`, `drawing_no`, `type`, `qty`, `purpose`, `budget`, `date_requested`, `requested_by`, `required_delivery_date`, `remarks`, `uploaded_by`) VALUES ('$request_id','$carmaker','$carmodel','$product','$jigname','$drawing_no','$type','$qty','$purpose','$budget','$date_requested','$requested_by','$required_delivery_date','$remarks','" . $_SESSION['fullname'] . "')";
+                    $insert = "INSERT INTO joms_request(`request_id`, `carmaker`, `carmodel`, `product`, `jigname`, `drawing_no`, `type`, `qty`, `purpose`, `budget`, `date_requested`, `requested_by`, `required_delivery_date`, `remarks`, `uploaded_by`, `section`) VALUES ('$request_id','$carmaker','$carmodel','$product','$jigname','$drawing_no','$type','$qty','$purpose','$budget','$date_requested','$requested_by','$required_delivery_date','$remarks','" . $_SESSION['fullname'] . "','" . $_SESSION['section'] . "')";
                     $stmt = $conn->prepare($insert);
                     if ($stmt->execute()) {
                         update_notif_count_joms_request($conn);

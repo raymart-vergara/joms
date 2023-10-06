@@ -15,6 +15,7 @@
         let request_date_from = document.getElementById('request_date_from_search').value;
         let request_date_to = document.getElementById('request_date_to_search').value;
 		let request_section = document.getElementById('request_section_search').value;
+		
         $('#spinner').css('display', 'block');
         $.ajax({
             url: '../../process/requester/request.php',
