@@ -25,9 +25,15 @@
          $_SESSION['username'] = $username;
          if ($section == 'mppd1') {
             header('location: page/requester/dashboard.php');
-         }elseif($section == 'ame3'){
+         }elseif ($section == 'ame2req') {
+            header('location: page/requester/dashboard.php');
+         }elseif ($section == 'ame3req') {
+            header('location: page/requester/dashboard.php');
+         }elseif ($section == 'ame5req') {
+            header('location: page/requester/dashboard.php');
+         }elseif($section == 'ame3') {
             header('location: page/purchasing/dashboard.php');
-         }elseif($section == 'ame2'){
+         }elseif($section == 'ame2') {
             header('location: page/installation/dashboard.php');
          } 			
  		}else{
