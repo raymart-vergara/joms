@@ -16,7 +16,7 @@ if (isset($_POST['upload'])) {
             // PARSE
             $error = 0;
             while (($line = fgetcsv($csvFile)) !== false) {
-                  // Check if the row is blank or consists only of whitespace
+                // Check if the row is blank or consists only of whitespace
                 if (empty(implode('', $line))) {
                     continue; // Skip blank lines
                 }
@@ -51,12 +51,6 @@ if (isset($_POST['upload'])) {
 
                     $date_tdrq = str_replace('/', '-', $target_date_reply_quotation);
                     $target_date_reply_quotation = date("Y-m-d", strtotime($date_tdrq));
-
-                    // $date_i_rfq = DateTime::createFromFormat('Y-m-d', $date_of_issuance_rfq);
-                    // $date_of_issuance_rfq = $date_i_rfq->format('Y-m-d');
-                    // $date_tdrq = DateTime::createFromFormat('Y-m-d', $target_date_reply_quotation);
-                    // $target_date_reply_quotation = $date_tdrq->format('Y-m-d');
-                  
 
                     // CHECK DATA
                     $prevQuery = "SELECT id FROM joms_request WHERE request_id = '$request_id' AND status = 'pending'";

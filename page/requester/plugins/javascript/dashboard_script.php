@@ -14,6 +14,8 @@
         let request_status = document.getElementById('request_status_search').value;
         let request_date_from = document.getElementById('request_date_from_search').value;
         let request_date_to = document.getElementById('request_date_to_search').value;
+		let request_section = document.getElementById('request_section_search').value;
+		
         $('#spinner').css('display', 'block');
         $.ajax({
             url: '../../process/requester/request.php',
@@ -23,7 +25,8 @@
                 method: 'fetch_request',
                 request_status: request_status,
                 request_date_from: request_date_from,
-                request_date_to: request_date_to
+                request_date_to: request_date_to,
+				request_section:request_section
             }, success: function (response) {
                 document.getElementById('list_of_request').innerHTML = response;
                 $('#spinner').fadeOut();

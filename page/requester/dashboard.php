@@ -47,7 +47,18 @@
                     <b><span class="h3" id="count_view"></span></b><br>
                     <label>Count</label>
                   </div>
-                  <div class="col-sm-2 offset-sm-5">
+                  <div class="col-sm-2 offset-sm-3">
+                    <label>Section</label>
+                    <select class="form-control" id="request_section_search" style="width: 100%;"
+                      onchange="search_request()" required>
+                      <option selected value="Please Select">Please Select</option>
+                      <option value="mppd1">Mppd1 - Request</option>
+                      <option value="ame2req">Ame2 - Request</option>
+                      <option value="ame3req">Ame3 - Request</option>
+                      <option value="ame5req">Ame5 - Request</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-2 ">
                     <label>Status</label>
                     <select class="form-control" id="request_status_search" style="width: 100%;"
                       onchange="search_request()" required>
@@ -77,7 +88,7 @@
                             <th colspan="17" class="bg-secondary">Request</th>
                             <th colspan="14" class="bg-light">RFQ Process</th>
                             <th colspan="16" class="bg-secondary">PO Process</th>
-                            <th colspan="2" class="bg-light">Installation</th>
+                            <th colspan="3" class="bg-light">Installation</th>
                           </tr>
                           <tr>
                           <th>
@@ -132,6 +143,7 @@
                             <th>Remarks </th>
                             <th>Uploaded By</th>
 
+                            <th>Line Number</th>
                             <th>Installation Date</th>
                             <th>Uploaded By</th>
                           </tr>
