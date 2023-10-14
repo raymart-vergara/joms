@@ -25,6 +25,8 @@
          $_SESSION['username'] = $username;
          if ($section == 'mppd1') {
             header('location: page/requester/dashboard.php');
+         }elseif ($section == 'ame1req') {
+            header('location: page/requester/dashboard.php');
          }elseif ($section == 'ame2req') {
             header('location: page/requester/dashboard.php');
          }elseif($section == 'ame1req') {
