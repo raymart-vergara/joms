@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="">MPPD 1 Account Management</h1>
+                            <h1 class="">Account Management</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header py-4">
-
                             <!-- <div class="row">
                                     <div class="col-lg-4 sm-6">
                                     <a href="#" class="btn btn-info" data-toggle="modal"

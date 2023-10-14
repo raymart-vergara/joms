@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2023 at 02:40 AM
+-- Generation Time: Oct 11, 2023 at 03:49 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -33,7 +33,7 @@ CREATE TABLE `joms_installation` (
   `installation_date` date DEFAULT NULL,
   `set_by` varchar(255) NOT NULL,
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `line_no` varchar(255) NOT NULL
+  `line_no` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,7 +92,8 @@ CREATE TABLE `joms_request` (
   `cancel_date` date DEFAULT NULL,
   `cancel_reason` varchar(255) NOT NULL,
   `cancel_by` varchar(255) NOT NULL,
-  `cancel_section` varchar(255) NOT NULL
+  `cancel_section` varchar(255) NOT NULL,
+  `section` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -186,7 +187,21 @@ INSERT INTO `user_accounts` (`id`, `fullname`, `username`, `password`, `section`
 (27, 'Marisol Gulang', 'mgulang', 'admin', 'ame3', 'user'),
 (28, 'Edgar Alacantara', '13-0510', 'garneth01', 'ame2', 'admin'),
 (29, 'Shawn Michael Magsino', '21-05943', '21-05943', 'ame2', 'admin'),
-(30, 'Kim Aldrich Servidad', '22-08211', '22-08211', 'ame2', 'admin');
+(30, 'Kim Aldrich Servidad', '22-08211', '22-08211', 'ame2', 'admin'),
+(31, 'Nestlie Balas', 'Nestlie', 'Balasnestlie', 'ame2', 'admin'),
+(32, 'Jeniffer Puyo', 'Jhen', '123456', 'ame2', 'user'),
+(33, 'Donna Alkonga', 'DAlkonga', 'peprep', 'ame2', 'user'),
+(34, 'teresa diomampo', 'teresa', 'teresa', 'ame2', 'user'),
+(35, 'Jimwell Macalintal', 'jmacalintal', 'jmacalintal', 'ame2', 'user'),
+(36, 'Luisito Tiña', 'Lucio', 'Lucioxxx4', 'ame2', 'user'),
+(37, 'Rosalinda M. Cueto', 'rose', 'rosen77', 'ame2', 'user'),
+(38, 'Jayson D. Larwa', 'jayson', 'jayson', 'ame2', 'user'),
+(47, 'ame5req', 'ame5req', 'ame5req', 'ame5req', 'admin'),
+(49, 'ame2req', 'ame2req', 'ame2req', 'ame2req', 'admin'),
+(50, 'ame3req', 'ame3req', 'ame3req', 'ame3req', 'admin'),
+(51, 'Edgar Alacantara', 'Edgar01', 'garneth01', 'ame2req', 'admin'),
+(52, 'Shawn Michael Magsino', 'Shawn23', '21-05943', 'ame2req', 'admin'),
+(53, 'Kim Aldrich Servidad', 'Aldrich28', '22-08211', 'ame2req', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -258,7 +273,7 @@ ALTER TABLE `notif_joms_request`
 -- AUTO_INCREMENT for table `user_accounts`
 --
 ALTER TABLE `user_accounts`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

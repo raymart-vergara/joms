@@ -150,7 +150,7 @@
                                   <th>Type </th>
                                   <th>Qty </th>
                                   <th>Purpose </th>
-                                  <th>Budget </th>
+                                  <th>Kigyo Budget </th>
                                   <th>Date Requested </th>
                                   <th>Requested By </th>
                                   <th>Required Delivery Date </th>

@@ -27,6 +27,8 @@
             header('location: page/requester/dashboard.php');
          }elseif ($section == 'ame2req') {
             header('location: page/requester/dashboard.php');
+         }elseif($section == 'ame1req') {
+            header('location: page/requester/dashboard.php');
          }elseif ($section == 'ame3req') {
             header('location: page/requester/dashboard.php');
          }elseif ($section == 'ame5req') {

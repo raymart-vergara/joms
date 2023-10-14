@@ -12,7 +12,6 @@
     $server_date_month_time = date('Y-m-01 H:i:s');
     $server_time = date('H:i:s');
 
- 
     try {
         $conn = new PDO ("mysql:host=$servername;dbname=joms_db",$username,$pass);
 

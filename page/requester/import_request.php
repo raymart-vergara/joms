@@ -102,10 +102,10 @@
                           <b><span class="h3" id="count_view"></span></b><br>
                           <label>Count</label>
                         </div>
-                        <div class="col offset-sm-9">
+                        <!-- <div class="col offset-sm-9">
                         <a href="#" class="btn btn-secondary"> Export Request
                           Data </a>
-                        </div>
+                        </div> -->
                       </div>
                      
                       <div class="row">
@@ -125,7 +125,7 @@
                                   <th>Type </th>
                                   <th>Qty </th>
                                   <th>Purpose </th>
-                                  <th>Budget </th>
+                                  <th>Kigyo Budget </th>
                                   <th>Date Requested </th>
                                   <th>Requested By </th>
                                   <th>Required Delivery Date </th>
