@@ -8,8 +8,8 @@ $filename = 'Request Data with Initial RFQ_' . $server_date_only . '.csv';
 $f = fopen('php://memory', 'w');
 
 // Set column headers 
-$fields = array('Request ID', 'Status', 'Car Maker', 'Car Model', 'Product', 'Jig Name', 'Drawing No', 'Type', 'Qty', 'Purpose', 'Kigyo Budget', 'Date Requested', 'Requested By', 'Required Delivery Date', 'Remarks (fill up if ECT jig is under new design, supplier)', 'Date of Issuance of RFQ', 'RFQ No', 'Target Date of Reply Quotation', 'Date of Reply Quotation ', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Total Amount', 'FSIB No.', 'FSIB Code', 'Date sent to Internal Signatories');
-$fields_exp = array('Request ID','Status', 'Ex. Mazda', 'Ex. J12SRHD', 'Ex.123', 'Ex. DA-123', 'Ex.', 'Ex.Assy jig', 'Ex.123', 'Ex. EV-MP Set up', 'Ex.12345', 'Ex. YYYY-MM-DD', 'Ex. Juan', 'Ex. YYYY-MM-DD', 'Example','Ex. YYYY-MM-DD', 'RFQ No','Ex. YYYY-MM-DD','Ex. YYYY-MM-DD', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Ex. YYYY-MM-DD');
+$fields = array('Request ID', 'Status', 'Car Maker', 'Car Model', 'Product', 'Jig Name', 'Drawing No', 'Type', 'Qty', 'Purpose', 'Kigyo Budget', 'Date Requested', 'Requested By', 'Required Delivery Date', 'Remarks (fill up if ECT jig is under new design, supplier)', 'Date of Issuance of RFQ', 'RFQ No', 'Target Date of Reply Quotation', 'Date of Reply Quotation ', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Unit Price PHP','Total Amount', 'FSIB No.', 'FSIB Code', 'Date sent to Internal Signatories');
+$fields_exp = array('Request ID','Status', 'Ex. Mazda', 'Ex. J12SRHD', 'Ex.123', 'Ex. DA-123', 'Ex.', 'Ex.Assy jig', 'Ex.123', 'Ex. EV-MP Set up', 'Ex.12345', 'Ex. YYYY-MM-DD', 'Ex. Juan', 'Ex. YYYY-MM-DD', 'Example','Ex. YYYY-MM-DD', 'RFQ No','Ex. YYYY-MM-DD','Ex. YYYY-MM-DD', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Unit Price PHP','Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Ex. YYYY-MM-DD');
 
 fputcsv($f, $fields, $delimiter);
 fputcsv($f, $fields_exp, $delimiter);
