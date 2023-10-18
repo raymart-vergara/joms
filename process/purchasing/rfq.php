@@ -10,7 +10,7 @@ if ($method == 'fetch_requested_processed') {
 	$query = "SELECT joms_request.request_id, joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type,
 	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks, joms_request.uploaded_by,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation , joms_rfq_process.leadtime, joms_rfq_process.quotation_no,
-	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories, joms_rfq_process.i_uploaded_by,
+	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.unit_price_usd,  joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories, joms_rfq_process.i_uploaded_by,
 	joms_rfq_process.c_uploaded_by
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id WHERE joms_request.status = 'open'";
@@ -57,6 +57,7 @@ if ($method == 'fetch_requested_processed') {
 			echo '<td>' . $j['quotation_no'] . '</td>';
 			echo '<td>' . $j['unit_price_jpy'] . '</td>';
 			echo '<td>' . $j['unit_price_usd'] . '</td>';
+			echo '<td>' . $j['unit_price_php'] . '</td>';
 			echo '<td>' . $j['total_amount'] . '</td>';
 			echo '<td>' . $j['fsib_no'] . '</td>';
 			echo '<td>' . $j['fsib_code'] . '</td>';
@@ -76,7 +77,7 @@ if ($method == 'filter_rfq_process') {
 	$query = "SELECT joms_request.request_id, joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type,
 	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks, joms_request.uploaded_by,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation , joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.i_uploaded_by,joms_rfq_process.c_uploaded_by,
-	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
+	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.unit_price_php, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id WHERE joms_request.status = 'open' AND date_reply_quotation IS NULL AND leadtime IS NULL  AND quotation_no IS NULL AND unit_price_jpy IS NULL AND total_amount IS NULL AND leadtime IS NULL AND" . "'$rfq_status_search' = 'open_initial' ";
 	$stmt = $conn->prepare($query);
@@ -122,7 +123,7 @@ if ($method == 'filter_rfq_process') {
 	$query = "SELECT joms_request.request_id, joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type,
 	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks,joms_request.uploaded_by,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation , joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.i_uploaded_by,joms_rfq_process.c_uploaded_by,
-	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
+	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.unit_price_php, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id WHERE joms_request.status = 'open' AND date_reply_quotation IS   NOT NULL AND leadtime IS   NOT NULL  AND quotation_no IS NOT NULL  AND unit_price_jpy IS NOT NULL AND total_amount IS NOT NULL AND " . "'$rfq_status_search' = 'open_complete' ";
 	$stmt = $conn->prepare($query);
@@ -165,6 +166,7 @@ if ($method == 'filter_rfq_process') {
 			echo '<td>' . $j['quotation_no'] . '</td>';
 			echo '<td>' . $j['unit_price_jpy'] . '</td>';
 			echo '<td>' . $j['unit_price_usd'] . '</td>';
+			echo '<td>' . $j['unit_price_php'] . '</td>';
 			echo '<td>' . $j['total_amount'] . '</td>';
 			echo '<td>' . $j['fsib_no'] . '</td>';
 			echo '<td>' . $j['fsib_code'] . '</td>';
@@ -177,7 +179,7 @@ if ($method == 'filter_rfq_process') {
 	$query = "SELECT joms_request.request_id, joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type,
 	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks,joms_request.uploaded_by,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation , joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.i_uploaded_by,joms_rfq_process.c_uploaded_by,
-	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
+	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.unit_price_php, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id WHERE joms_request.status = 'open' AND " . "'$rfq_status_search' = 'open_all' ";
 	$stmt = $conn->prepare($query);
@@ -220,6 +222,7 @@ if ($method == 'filter_rfq_process') {
 			echo '<td>' . $j['quotation_no'] . '</td>';
 			echo '<td>' . $j['unit_price_jpy'] . '</td>';
 			echo '<td>' . $j['unit_price_usd'] . '</td>';
+			echo '<td>' . $j['unit_price_php'] . '</td>';
 			echo '<td>' . $j['total_amount'] . '</td>';
 			echo '<td>' . $j['fsib_no'] . '</td>';
 			echo '<td>' . $j['fsib_code'] . '</td>';
@@ -233,7 +236,7 @@ if ($method == 'filter_rfq_process') {
 	$query = "SELECT joms_request.request_id, joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type,
 	joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by , joms_request.required_delivery_date, joms_request.remarks, joms_request.uploaded_by, joms_request.cancel_date, joms_request.cancel_reason, joms_request.cancel_by, joms_request.cancel_section,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.date_reply_quotation , joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.i_uploaded_by,joms_rfq_process.c_uploaded_by,
-	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
+	joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.unit_price_php, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id WHERE joms_request.status = 'cancelled' AND " . "'$rfq_status_search' = 'cancelled' ";
 	$stmt = $conn->prepare($query);
@@ -282,6 +285,7 @@ if ($method == 'filter_rfq_process') {
 			echo '<td>' . $j['quotation_no'] . '</td>';
 			echo '<td>' . $j['unit_price_jpy'] . '</td>';
 			echo '<td>' . $j['unit_price_usd'] . '</td>';
+			echo '<td>' . $j['unit_price_php'] . '</td>';
 			echo '<td>' . $j['total_amount'] . '</td>';
 			echo '<td>' . $j['fsib_no'] . '</td>';
 			echo '<td>' . $j['fsib_code'] . '</td>';
