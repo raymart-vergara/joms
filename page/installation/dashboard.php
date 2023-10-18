@@ -229,7 +229,7 @@
                           <th>RFQ No </th>
                           <th>Target Date of Reply Quotation </th>
                           <th>Uploaded By</th>
-Bawi, Padre Garcia, Batangas
+
                           <th>Date of Reply Quotation </th>
                           <th>LEADTIME(based on quotation)</th>
                           <th>Quotation No </th>

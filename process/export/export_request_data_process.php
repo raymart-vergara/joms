@@ -55,7 +55,7 @@ if ($stmt->rowCount() > 0) {
 			$row['quotation_no'],
 			$row['unit_price_jpy'],
 			$row['unit_price_usd'],
-			$row['unit_price_usd'],
+			$row['unit_price_php'],
 			$row['total_amount'],
 			$row['fsib_no'],
 			$row['fsib_code'],
