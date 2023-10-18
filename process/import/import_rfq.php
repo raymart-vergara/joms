@@ -99,11 +99,12 @@ if (isset($_POST['upload'])) {
                     $quotation_no = $line[20];
                     $unit_price_jpy = $line[21];
                     $unit_price_usd = $line[22];
-                    $total_amount = $line[23];
+                    $unit_price_php = $line[23];
+                    $total_amount = $line[24];
 
-                    $fsib_no = $line[24];
-                    $fsib_code = $line[25];
-                    $date_sent_to_internal_signatories = $line[26];
+                    $fsib_no = $line[25];
+                    $fsib_code = $line[26];
+                    $date_sent_to_internal_signatories = $line[27];
 
 
                     //$date_i_rfq = DateTime::createFromFormat('m/d/Y', $date_of_issuance_rfq);
@@ -139,6 +140,7 @@ if (isset($_POST['upload'])) {
                     quotation_no = '$quotation_no', 
                     unit_price_jpy = '$unit_price_jpy', 
                     unit_price_usd = '$unit_price_usd', 
+                    unit_price_php = '$unit_price_php', 
                     total_amount = '$total_amount', 
                     fsib_no = '$fsib_no',
                     fsib_code = '$fsib_code',

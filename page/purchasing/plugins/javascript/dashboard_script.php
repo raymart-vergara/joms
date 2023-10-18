@@ -7,7 +7,6 @@ $(function(){
     if (role == 'user') {
         $('#accounts_bar').hide();
     }
-    
     search_request();
     realtime_search_request = setInterval(search_request, 5000);
 

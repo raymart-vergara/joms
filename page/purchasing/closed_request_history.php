@@ -92,7 +92,7 @@
                       <table class="table table-head-fixed text-nowrap table-bordered table-hover" id="list_of_uploaded_request_with_po_table">
                         <thead style="text-align:center;">
                         <th colspan="16" class="bg-secondary">Request</th>
-                            <th colspan="14" class="bg-light">RFQ Process</th>
+                            <th colspan="15" class="bg-light">RFQ Process</th>
                             <th colspan="16" class="bg-secondary">PO Process</th>
                           <tr>
                           
@@ -122,6 +122,7 @@
                             <th>Quotation No </th>
                             <th>Unit Price JPY </th>
                             <th>Unit Price USD </th>
+                            <th>Unit Price PHP </th>
                             <th>Total Amount </th>
                             <th>FSIB No. </th>
                             <th>FSIB Code </th>
