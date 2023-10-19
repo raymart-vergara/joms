@@ -29,10 +29,10 @@ function check_csv($file, $conn)
 
         // CHECK IF BLANK DATA
         if (
-            $line[0] == '' || $line[27] == '' || $line[28] == '' || $line[29] == '' || $line[30] == '' ||
+            $line[0] == ''  || $line[27] == '' || $line[28] == '' || $line[29] == '' || $line[30] == '' ||
             $line[31] == '' || $line[32] == '' || $line[33] == '' || $line[34] == '' || $line[35] == '' ||
             $line[36] == '' || $line[37] == '' || $line[38] == '' || $line[39] == '' || $line[40] == '' ||
-            $line[41] == '' || $line[42] == ''
+            $line[41] == '' || $line[42] == '' ||  $line[43] == ''
         ) {
             // IF BLANK DETECTED ERROR
             $hasBlankError++;
@@ -91,36 +91,37 @@ if (isset($_POST['upload'])) {
                     $date_of_issuance_rfq = $line[15];
                     $rfq_no = $line[16];
                     $target_date_reply_quotation = $line[17];
-                    $date_reply_quotation = $line[18];
-                    $leadtime = $line[19];
-                    $quotation_no = $line[20];
-                    $unit_price_jpy = $line[21];
-                    $unit_price_usd = $line[22];
-                    $unit_price_php = $line[23];
-                    $total_amount = $line[24];
-                    $fsib_no = $line[25];
-                    $fsib_code = $line[26];
-                    $date_sent_to_internal_signatories = $line[27];
+                    $item_code = $line[18];
+                    $date_reply_quotation = $line[19];
+                    $leadtime = $line[20];
+                    $quotation_no = $line[21];
+                    $unit_price_jpy = $line[22];
+                    $unit_price_usd = $line[23];
+                    $unit_price_php = $line[24];
+                    $total_amount = $line[25];
+                    $fsib_no = $line[26];
+                    $fsib_code = $line[27];
+                    $date_sent_to_internal_signatories = $line[28];
                     //po
 
-                    $target_approval_date_of_quotation = $line[28];
-                    $approval_date_of_quotation = $line[29];
-                    $target_date_submission_to_purchasing = $line[30];
-                    $actual_date_of_submission_to_purchasing = $line[31];
-                    $target_po_date = $line[32];
-                    $po_date = $line[33];
-                    $po_no = $line[34];
-                    $ordering_additional_details = $line[35];
+                    $target_approval_date_of_quotation = $line[29];
+                    $approval_date_of_quotation = $line[30];
+                    $target_date_submission_to_purchasing = $line[31];
+                    $actual_date_of_submission_to_purchasing = $line[32];
+                    $target_po_date = $line[33];
+                    $po_date = $line[34];
+                    $po_no = $line[35];
+                    $ordering_additional_details = $line[36];
                     // $car_model_for_formula = $line[35];
-                    $supplier = $line[36];
+                    $supplier = $line[37];
                     // $start_of_usage = $line[37];
                     // $required_delivery_date2 = $line[38];
-                    $etd = $line[37];
-                    $eta = $line[38];
-                    $actual_arrival_date = $line[39];
-                    $invoice_no = $line[40];
-                    $classification = $line[41];
-                    $remarks2 = $line[42];
+                    $etd = $line[38];
+                    $eta = $line[39];
+                    $actual_arrival_date = $line[40];
+                    $invoice_no = $line[41];
+                    $classification = $line[42];
+                    $remarks2 = $line[43];
 
                     // CHECK IF BLANK DATA
 
@@ -144,38 +145,6 @@ if (isset($_POST['upload'])) {
 
                     $date_aad = str_replace('/', '-', $actual_arrival_date);
                     $actual_arrival_date = date("Y-m-d", strtotime($date_aad));
-
-                    // $date_tadoq = DateTime::createFromFormat('Y-m-d', $target_approval_date_of_quotation);
-                    // $target_approval_date_of_quotation = $date_tadoq->format('Y-m-d');
-
-                    // $date_adoq = DateTime::createFromFormat('Y-m-d', $approval_date_of_quotation);
-                    // $approval_date_of_quotation = $date_adoq->format('Y-m-d');
-
-                    // $date_tdstp = DateTime::createFromFormat('Y-m-d', $target_date_submission_to_purchasing);
-                    // $target_date_submission_to_purchasing = $date_tdstp->format('Y-m-d');
-
-                    // $date_adostp = DateTime::createFromFormat('Y-m-d', $actual_date_of_submission_to_purchasing);
-                    // $actual_date_of_submission_to_purchasing = $date_adostp->format('Y-m-d');
-
-                    // $date_tpd = DateTime::createFromFormat('Y-m-d', $target_po_date);
-                    // $target_po_date = $date_tpd->format('Y-m-d');
-
-                    // $date_pd = DateTime::createFromFormat('Y-m-d', $po_date);
-                    // $po_date = $date_pd->format('Y-m-d');
-
-                    // $date_sou = DateTime::createFromFormat('m/d/Y', $start_of_usage);
-                    // $start_of_usage = $date_sou->format('Y-m-d');
-
-                    // $date_rdd = DateTime::createFromFormat('m/d/Y', $required_delivery_date2);
-                    // $required_delivery_date2 = $date_rdd->format('Y-m-d');
-
-                    // $date_aad = DateTime::createFromFormat('Y-m-d', $actual_arrival_date);
-                    // $actual_arrival_date = $date_aad->format('Y-m-d');
-
-                    // $date_r = DateTime::createFromFormat('m/d/Y', $date_requested);
-                    // $date_requested = $date_r->format('Y-m-d');
-                    // $date_rdd = DateTime::createFromFormat('m/d/Y', $required_delivery_date);
-                    // $required_delivery_date = $date_rdd->format('Y-m-d');
 
                     // CHECK DATA
                     $prevQuery = "SELECT joms_request.id FROM joms_request 
@@ -218,22 +187,22 @@ if (isset($_POST['upload'])) {
                                 $request_id = $j['request_id'];
                                 $stmt = NULL;
                                 $query = "UPDATE joms_po_process SET 
-                             target_approval_date_of_quotation = '$target_approval_date_of_quotation',
-                             approval_date_of_quotation = '$approval_date_of_quotation',
-                             target_date_submission_to_purchasing = '$target_date_submission_to_purchasing',
-                             actual_date_of_submission_to_purchasing = '$actual_date_of_submission_to_purchasing',
-                             target_po_date = '$target_po_date',
-                             po_date = '$po_date',
-                             po_no = '$po_no',
-                             ordering_additional_details = '$ordering_additional_details',
-                             supplier = '$supplier',
-                             etd = '$etd', 
-                             eta = '$eta',
-                             actual_arrival_date = '$actual_arrival_date',
-                             invoice_no = '$invoice_no',
-                             classification = '$classification',
-                             remarks = '$remarks2', 
-                             po_uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
+                                target_approval_date_of_quotation = '$target_approval_date_of_quotation',
+                                approval_date_of_quotation = '$approval_date_of_quotation',
+                                target_date_submission_to_purchasing = '$target_date_submission_to_purchasing',
+                                actual_date_of_submission_to_purchasing = '$actual_date_of_submission_to_purchasing',
+                                target_po_date = '$target_po_date',
+                                po_date = '$po_date',
+                                po_no = '$po_no',
+                                ordering_additional_details = '$ordering_additional_details',
+                                supplier = '$supplier',
+                                etd = '$etd', 
+                                eta = '$eta',
+                                actual_arrival_date = '$actual_arrival_date',
+                                invoice_no = '$invoice_no',
+                                classification = '$classification',
+                                remarks = '$remarks2', 
+                                po_uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
                                 $stmt = $conn->prepare($query);
                                 if ($stmt->execute()) {
                                     $error = 0;
@@ -265,7 +234,7 @@ if (isset($_POST['upload'])) {
                     }
                 </script>';
                 }
-            }else {
+            } else {
                 echo '<script>
                 var x = confirm("' . $chkCsvMsg . '");
                             if(x == true){
