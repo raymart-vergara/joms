@@ -27,6 +27,7 @@ if ($method == 'fetch_requested_processed') {
 				echo '<td>'.$j['requested_by'].'</td>';
 				echo '<td>'.$j['required_delivery_date'].'</td>';
 				echo '<td>'.$j['remarks'].'</td>';
+				echo '<td>'.$j['uploaded_by'].'</td>';
 			echo '</tr>';
 		}
 	}else{

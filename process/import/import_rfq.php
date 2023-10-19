@@ -31,8 +31,8 @@ function check_csv($file, $conn)
         if (
             $line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' ||
             $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' ||
-            $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '' || $line[18] == '' || $line[19] == '' ||
-            $line[20] == '' || $line[21] == '' || $line[22] == '' || $line[23] == '' || $line[24] == '' || $line[25] == '' || $line[26] == ''
+            $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '' || $line[19] == '' ||
+            $line[20] == '' || $line[21] == '' || $line[22] == '' || $line[23] == '' || $line[24] == '' || $line[25] == '' || $line[26] == '' || $line[27] == '' || $line[27] == ''
         ) {
             // IF BLANK DETECTED ERROR
             $hasBlankError++;
@@ -93,18 +93,19 @@ if (isset($_POST['upload'])) {
                     $date_of_issuance_rfq = $line[15];
                     $rfq_no = $line[16];
                     $target_date_reply_quotation = $line[17];
+                    $item_code = $line[18];
 
-                    $date_reply_quotation = $line[18];
-                    $leadtime = $line[19];
-                    $quotation_no = $line[20];
-                    $unit_price_jpy = $line[21];
-                    $unit_price_usd = $line[22];
-                    $unit_price_php = $line[23];
-                    $total_amount = $line[24];
+                    $date_reply_quotation = $line[19];
+                    $leadtime = $line[20];
+                    $quotation_no = $line[21];
+                    $unit_price_jpy = $line[22];
+                    $unit_price_usd = $line[23];
+                    $unit_price_php = $line[24];
+                    $total_amount = $line[25];
 
-                    $fsib_no = $line[25];
-                    $fsib_code = $line[26];
-                    $date_sent_to_internal_signatories = $line[27];
+                    $fsib_no = $line[26];
+                    $fsib_code = $line[27];
+                    $date_sent_to_internal_signatories = $line[28];
 
 
                     //$date_i_rfq = DateTime::createFromFormat('m/d/Y', $date_of_issuance_rfq);
@@ -135,19 +136,19 @@ if (isset($_POST['upload'])) {
                         }
 
                         $query = "UPDATE joms_rfq_process SET 
-                    date_reply_quotation = '$date_reply_quotation', 
-                    leadtime = '$leadtime', 
-                    quotation_no = '$quotation_no', 
-                    unit_price_jpy = '$unit_price_jpy', 
-                    unit_price_usd = '$unit_price_usd', 
-                    unit_price_php = '$unit_price_php', 
-                    total_amount = '$total_amount', 
-                    fsib_no = '$fsib_no',
-                    fsib_code = '$fsib_code',
-                    date_sent_to_internal_signatories = '$date_sent_to_internal_signatories',
-                    c_uploaded_by = '" . $_SESSION['fullname'] . "',
-                    c_date_updated = '$server_date_time'
-                    WHERE request_id = '$request_id'";
+                        date_reply_quotation = '$date_reply_quotation', 
+                        leadtime = '$leadtime', 
+                        quotation_no = '$quotation_no', 
+                        unit_price_jpy = '$unit_price_jpy', 
+                        unit_price_usd = '$unit_price_usd', 
+                        unit_price_php = '$unit_price_php', 
+                        total_amount = '$total_amount', 
+                        fsib_no = '$fsib_no',
+                        fsib_code = '$fsib_code',
+                        date_sent_to_internal_signatories = '$date_sent_to_internal_signatories',
+                        c_uploaded_by = '" . $_SESSION['fullname'] . "',
+                        c_date_updated = '$server_date_time'
+                        WHERE request_id = '$request_id'";
 
                         $stmt = $conn->prepare($query);
                         if ($stmt->execute()) {

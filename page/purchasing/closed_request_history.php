@@ -1,5 +1,5 @@
-<?php include 'plugins/navbar.php';?>
-<?php include 'plugins/sidebar/closed_request_historybar.php';?>
+<?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/sidebar/closed_request_historybar.php'; ?>
 <!-- Main Sidebar Container -->
 
 <div class="content-wrapper">
@@ -46,11 +46,13 @@
                   </div>
                   <div class="col-sm-3">
                     <label>Search</label>
-                    <button type="button" class="btn btn-secondary btn-block" onclick="get_closed_request_history()"><i class="fas fa-search"></i> Search</button>
+                    <button type="button" class="btn btn-secondary btn-block" onclick="get_closed_request_history()"><i
+                        class="fas fa-search"></i> Search</button>
                   </div>
                   <div class="col-sm-3">
                     <label>Export</label>
-                    <button type="button" class="btn btn-secondary btn-block" onclick="export_closed_request_history()"><i class="fas fa-download"></i> Export History</button>
+                    <button type="button" class="btn btn-secondary btn-block"
+                      onclick="export_closed_request_history()"><i class="fas fa-download"></i> Export History</button>
                   </div>
                 </div>
               </div>
@@ -88,72 +90,74 @@
                   </div>
                   <div class="row">
                     <div class="col-12">
-                    <div class="table-responsive p-0" style="height: 500px;">
-                      <table class="table table-head-fixed text-nowrap table-bordered table-hover" id="list_of_uploaded_request_with_po_table">
-                        <thead style="text-align:center;">
-                        <th colspan="16" class="bg-secondary">Request</th>
+                      <div class="table-responsive p-0" style="height: 500px;">
+                        <table class="table table-head-fixed text-nowrap table-bordered table-hover"
+                          id="list_of_uploaded_request_with_po_table">
+                          <thead style="text-align:center;">
+                            <th colspan="16" class="bg-secondary">Request</th>
                             <th colspan="15" class="bg-light">RFQ Process</th>
                             <th colspan="16" class="bg-secondary">PO Process</th>
-                          <tr>
-                          
-                            <th>#</th>
-                            <th>Status</th>
-                            <th>Car Maker</th>  
-                            <th>Car Model</th>
-                            <th>Product </th>
-                            <th>Jig Name </th>
-                            <th>Drawing No </th>
-                            <th>Type </th>
-                            <th>Qty </th>
-                            <th>Purpose </th>
-                            <th>Kigyo Budget </th>
-                            <th>Date Requested </th>
-                            <th>Requested By </th>
-                            <th>Required Delivery Date </th>
-                            <th>Remarks (fill up if ECT jig is under new design, supplier) </th>
-                            <th>Upload By </th>
-                            
-                            <th>Date of Issuance of RFQ </th>
-                            <th>RFQ No </th>
-                            <th>Target Date of Reply Quotation </th>
-                            <th>Upload By </th>
-                            <th>Date of Reply Quotation </th>
-                            <th>LEADTIME(based on quotation)</th>
-                            <th>Quotation No </th>
-                            <th>Unit Price JPY </th>
-                            <th>Unit Price USD </th>
-                            <th>Unit Price PHP </th>
-                            <th>Total Amount </th>
-                            <th>FSIB No. </th>
-                            <th>FSIB Code </th>
-                            <th>Date sent to Internal Signatories </th>
-                            <th>Upload By </th>
-                            
-                            <th>Target Approval date of quotation </th>
-                            <th>Approval date of quotation </th>
-                            <th>Target Date Submission to Purchasing </th>
-                            <th>Actual Date of Submission to Purchasing </th>
-                            <th>Target PO Date</th>
-                            <th>PO Date </th>
-                            <th>PO No. </th>
-                            <th>Ordering Additional Details </th>
-                            <th>Supplier </th>
-                            <th>ETD </th>
-                            <th>ETA </th>
-                            <th>Actual Arrival date </th>
-                            <th>Invoice No </th>
-                            <th>Classification </th>
-                            <th>Remarks </th>
-                            <th>Upload By </th>
-                          </tr>
-                        </thead>
-                        <tbody id="list_of_uploaded_request_with_po" style="text-align:center;"></tbody>
-                      </table>
-                      <div class="row">
-                        <div class="col-6"></div>
-                          <div class="col-6">   
+                            <tr>
+
+                              <th>#</th>
+                              <th>Status </th>
+                              <th>Car Maker </th>
+                              <th>Car Model </th>
+                              <th>Product </th>
+                              <th>Jig Name </th>
+                              <th>Drawing No </th>
+                              <th>Type </th>
+                              <th>Qty </th>
+                              <th>Purpose </th>
+                              <th>Kigyo Budget </th>
+                              <th>Date Requested </th>
+                              <th>Requested By </th>
+                              <th>Required Delivery Date </th>
+                              <th>Remarks (fill up if ECT jig is under new design, supplier) </th>
+                              <th>Upload By </th>
+
+                              <th>Date of Issuance of RFQ </th>
+                              <th>RFQ No </th>
+                              <th>Target Date of Reply Quotation </th>
+                              <th>Item Code </th>
+                              <th>Upload By </th>
+                              <th>Date of Reply Quotation </th>
+                              <th>LEADTIME(based on quotation)</th>
+                              <th>Quotation No </th>
+                              <th>Unit Price JPY </th>
+                              <th>Unit Price USD </th>
+                              <th>Unit Price PHP </th>
+                              <th>Total Amount </th>
+                              <th>FSIB No. </th>
+                              <th>FSIB Code </th>
+                              <th>Date sent to Internal Signatories </th>
+                              <th>Upload By </th>
+
+                              <th>Target Approval date of quotation </th>
+                              <th>Approval date of quotation </th>
+                              <th>Target Date Submission to Purchasing </th>
+                              <th>Actual Date of Submission to Purchasing </th>
+                              <th>Target PO Date</th>
+                              <th>PO Date </th>
+                              <th>PO No. </th>
+                              <th>Ordering Additional Details </th>
+                              <th>Supplier </th>
+                              <th>ETD </th>
+                              <th>ETA </th>
+                              <th>Actual Arrival date </th>
+                              <th>Invoice No </th>
+                              <th>Classification </th>
+                              <th>Remarks </th>
+                              <th>Upload By </th>
+                            </tr>
+                          </thead>
+                          <tbody id="list_of_uploaded_request_with_po" style="text-align:center;"></tbody>
+                        </table>
+                        <div class="row">
+                          <div class="col-6"></div>
+                          <div class="col-6">
                             <div class="spinner" id="spinner" style="display:none;">
-                              <div class="loader float-sm-center"></div>    
+                              <div class="loader float-sm-center"></div>
                             </div>
                           </div>
                         </div>
@@ -172,6 +176,6 @@
   </section>
 </div>
 
-<?php include 'plugins/footer.php';?>
+<?php include 'plugins/footer.php'; ?>
 <?php include 'plugins/javascript/notification_script.php'; ?>
 <?php include 'plugins/javascript/closed_request_history_script.php'; ?>

@@ -87,7 +87,7 @@
                         <thead style="text-align:center;">
                           <tr>
                             <th colspan="17" class="bg-secondary">Request</th>
-                            <th colspan="15" class="bg-light">RFQ Process</th>
+                            <th colspan="16" class="bg-light">RFQ Process</th>
                             <th colspan="16" class="bg-secondary">PO Process</th>
                             <th colspan="3" class="bg-light">Installation</th>
                           </tr>
@@ -115,6 +115,7 @@
                             <th>Date of Issuance of RFQ </th>
                             <th>RFQ No </th>
                             <th>Target Date of Reply Quotation </th>
+                            <th>Item Code</th>
                             <th>Uploaded By</th>
                             <th>Date of Reply Quotation </th>
                             <th>LEADTIME(based on quotation)</th>
