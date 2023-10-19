@@ -32,7 +32,7 @@ function check_csv($file, $conn)
             $line[0] == ''  || $line[27] == '' || $line[28] == '' || $line[29] == '' || $line[30] == '' ||
             $line[31] == '' || $line[32] == '' || $line[33] == '' || $line[34] == '' || $line[35] == '' ||
             $line[36] == '' || $line[37] == '' || $line[38] == '' || $line[39] == '' || $line[40] == '' ||
-            $line[41] == '' || $line[42] == '' ||  $line[43] == ''
+            $line[41] == ''
         ) {
             // IF BLANK DETECTED ERROR
             $hasBlankError++;
@@ -111,17 +111,17 @@ if (isset($_POST['upload'])) {
                     $target_po_date = $line[33];
                     $po_date = $line[34];
                     $po_no = $line[35];
-                    $ordering_additional_details = $line[36];
+                    // $ordering_additional_details = $line[36];
                     // $car_model_for_formula = $line[35];
-                    $supplier = $line[37];
+                    $supplier = $line[36];
                     // $start_of_usage = $line[37];
                     // $required_delivery_date2 = $line[38];
-                    $etd = $line[38];
-                    $eta = $line[39];
-                    $actual_arrival_date = $line[40];
-                    $invoice_no = $line[41];
-                    $classification = $line[42];
-                    $remarks2 = $line[43];
+                    $etd = $line[37];
+                    $eta = $line[38];
+                    $actual_arrival_date = $line[39];
+                    $invoice_no = $line[40];
+                    // $classification = $line[42];
+                    $remarks2 = $line[41];
 
                     // CHECK IF BLANK DATA
 
@@ -157,8 +157,8 @@ if (isset($_POST['upload'])) {
                         foreach ($res->fetchALL() as $x) {
                             $id = $x['id'];
                         }
-                        $insert = "INSERT INTO joms_po_process(`request_id`, `target_approval_date_of_quotation`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `ordering_additional_details`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`, `classification`, `remarks`, `po_uploaded_by`) 
-                         VALUES ('$request_id', '$target_approval_date_of_quotation', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no', '$ordering_additional_details', '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$classification', '$remarks2', '" . $_SESSION['fullname'] . "')";
+                        $insert = "INSERT INTO joms_po_process(`request_id`, `target_approval_date_of_quotation`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`,`remarks`, `po_uploaded_by`) 
+                         VALUES ('$request_id', '$target_approval_date_of_quotation', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no',  '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$remarks2', '" . $_SESSION['fullname'] . "')";
                         $stmt = $conn->prepare($insert);
                         if ($stmt->execute()) {
                             // $error = 0;
@@ -194,13 +194,13 @@ if (isset($_POST['upload'])) {
                                 target_po_date = '$target_po_date',
                                 po_date = '$po_date',
                                 po_no = '$po_no',
-                                ordering_additional_details = '$ordering_additional_details',
+                                -- ordering_additional_details = '$ordering_additional_details',
                                 supplier = '$supplier',
                                 etd = '$etd', 
                                 eta = '$eta',
                                 actual_arrival_date = '$actual_arrival_date',
                                 invoice_no = '$invoice_no',
-                                classification = '$classification',
+                                -- classification = '$classification',
                                 remarks = '$remarks2', 
                                 po_uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
                                 $stmt = $conn->prepare($query);
