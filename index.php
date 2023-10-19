@@ -12,13 +12,14 @@ if (isset($_SESSION['username'])) {
     exit;
   }  
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JOMS | Login</title>
+  <title> JOMS | Login </title>
    <link rel="alternate icon" href="dist/img/logo.ico" type="image/x-icon" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="plugins/style.css">

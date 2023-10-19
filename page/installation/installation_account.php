@@ -27,23 +27,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header py-4">
-
-                            <!-- <div class="row">
-                                    <div class="col-lg-4 sm-6">
-                                    <a href="#" class="btn btn-info" data-toggle="modal"
-                                            data-target="#new_account">Register
-                                            Account</a>
-                                    </div>
-                                        
-                                    <div class="col-lg-4 col-sm-6 float-right">
-                                        <input type="text" id="full_name_search" class="form-control" autocomplete="off"
-                                            placeholder="Fullname">
-                                    </div>
-                                    <div class="col-lg-2 col-sm-6 float-right">
-                                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_accounts()">Search
-                                        <i class="fas fa-search"></i></button>
-                                        </div>
-                                </div> -->
                             <div class="d-flex">
                                 <div class="mr-auto">
                                     <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add_account">

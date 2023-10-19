@@ -18,8 +18,6 @@ $sql = "SELECT * FROM joms_request WHERE status = 'pending'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 if ($stmt->rowCount() > 0) {
-
-	// Output each row of the data, format line as csv and write to file pointer 
 	foreach ($stmt->fetchALL() as $row) {
 		$lineData = array(
 			$row['request_id'],
@@ -37,8 +35,6 @@ if ($stmt->rowCount() > 0) {
 			$row['requested_by'],
 			$row['required_delivery_date'],
 			$row['remarks']
-
-			
 		);
 		fputcsv($f, $lineData, $delimiter);
 	}

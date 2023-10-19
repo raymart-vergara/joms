@@ -140,13 +140,13 @@
                               <th>Target PO Date</th>
                               <th>PO Date </th>
                               <th>PO No. </th>
-                              <th>Ordering Additional Details </th>
+                              <!-- <th>Ordering Additional Details </th> -->
                               <th>Supplier </th>
                               <th>ETD </th>
                               <th>ETA </th>
                               <th>Actual Arrival date </th>
                               <th>Invoice No </th>
-                              <th>Classification </th>
+                              <!-- <th>Classification </th> -->
                               <th>Remarks </th>
                               <th>Upload By </th>
                             </tr>
