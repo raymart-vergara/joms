@@ -133,8 +133,8 @@
                               <thead style="text-align:center;">
                                 <tr>
                                   <th colspan="17" class="bg-secondary">Request</th>
-                                  <th colspan="16" class="bg-light">RFQ Process</th>
-                                  <th colspan="16" class="bg-secondary">PO Process</th>
+                                  <th colspan="17" class="bg-light">RFQ Process</th>
+                                  <th colspan="15" class="bg-secondary">PO Process</th>
                                 </tr>
                                 <tr>
                                 <th>
@@ -173,9 +173,10 @@
                                   <th>FSIB No. </th>
                                   <th>FSIB Code </th>
                                   <th>Date sent to Internal Signatories </th>
+                                  <th>Target Approval date of quotation </th>
                                   <th>Upload By</th>
 
-                                  <th>Target Approval date of quotation </th>
+                                  
                                   <th>Approval date of quotation </th>
                                   <th>Target Date Submission to Purchasing </th>
                                   <th>Actual Date of Submission to Purchasing </th>
