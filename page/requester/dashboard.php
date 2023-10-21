@@ -88,7 +88,7 @@
                           <tr>
                             <th colspan="17" class="bg-secondary">Request</th>
                             <th colspan="16" class="bg-light">RFQ Process</th>
-                            <th colspan="16" class="bg-secondary">PO Process</th>
+                            <th colspan="14" class="bg-secondary">PO Process</th>
                             <th colspan="3" class="bg-light">Installation</th>
                           </tr>
                           <tr>
