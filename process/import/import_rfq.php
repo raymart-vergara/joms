@@ -108,12 +108,6 @@ if (isset($_POST['upload'])) {
                     $date_sent_to_internal_signatories = $line[28];
                     $target_approval_date_of_quotation = $line[29];
 
-
-                    //$date_i_rfq = DateTime::createFromFormat('m/d/Y', $date_of_issuance_rfq);
-                    //$date_of_issuance_rfq = $date_i_rfq->format('Y-m-d');
-                    //$date_tdrq = DateTime::createFromFormat('m/d/Y', $target_date_reply_quotation);
-                    //$target_date_reply_quotation = $date_tdrq->format('Y-m-d');
-
                     $date_rq = str_replace('/', '-', $date_reply_quotation);
                     $date_reply_quotation = date("Y-m-d", strtotime($date_rq));
 
@@ -125,10 +119,6 @@ if (isset($_POST['upload'])) {
 
                     $date_tadq = str_replace('/', '-', $target_approval_date_of_quotation);
                     $target_approval_date_of_quotation = date("Y-m-d", strtotime($date_tadq));
-
-
-                    // $date_dis = DateTime::createFromFormat('Y-m-d', $date_sent_to_internal_signatories);
-                    // $date_sent_to_internal_signatories = $date_dis->format('Y-m-d');
 
                     // CHECK DATA
                     $prevQuery = "SELECT request_id FROM joms_request WHERE request_id = '$request_id' AND status = 'open'";
