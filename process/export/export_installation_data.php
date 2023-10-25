@@ -6,6 +6,9 @@ $filename = 'Installation Data Closed_' . $server_date_only . '.csv';
 // Create a file pointer 
 $f = fopen('php://memory', 'w');
 
+// Add UTF-8 BOM (For Any characters compatibility)
+fputs($f, "\xEF\xBB\xBF");
+
 // Set column headers 
 $fields = array('Request ID', 'Status', 'Car Maker', 'Car Model', 'Product', 'Jig Name', 'Drawing No', 'Type', 'Qty', 'Purpose', 'Kigyo Budget', 'Date Requested', 'Requested By', 'Required Delivery Date', 'Remarks (fill up if ECT jig is under new design, supplier)', 'Date of Issuance of RFQ', 'RFQ No', 'Target Date of Reply Quotation', 'Date of Reply Quotation ', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD','Unit Price PHP', 'Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Date sent to Internal Signatories ', 'Target Approval date of quotation ', 'Approval date of quotation ', 'Target Date Submission to Purchasing ', 'Actual Date of Submission to Purchasing ', 'Target PO Date', 'PO Date ', 'PO No. ', 'Supplier ',  'ETD ', 'ETA ', 'Actual Arrival date ', 'Invoice No ', 'Remarks', 'Line Number','Installation Date');
 $fields_exp = array('Request ID', 'Status', 'Ex. Mazda', 'Ex. J12SRHD', 'Ex.123', 'Ex. DA-123', 'Ex.', 'Ex.Assy jig', 'Ex.123', 'Ex. EV-MP Set up', 'Ex.12345', 'Ex. YYYY-MM-DD', 'Ex. Juan', 'Ex. YYYY-MM-DD', 'Example','Ex. YYYY-MM-DD', 'RFQ No','Ex. YYYY-MM-DD','Ex. YYYY-MM-DD', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Unit Price PHP','Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD','Ex. YYYY-MM-DD', 'PO No. ', 'Supplier ', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Invoice No ', 'Remarks ','Line Number', 'Ex. YYYY-MM-DD');

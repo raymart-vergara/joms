@@ -1,11 +1,15 @@
 <?php
 include '../../process/conn.php';
+
 $delimiter = ",";
 
 $filename = 'Request Data Request_'.$server_date_only.'.csv';
 
 // Create a file pointer 
 $f = fopen('php://memory', 'w');
+
+// Add UTF-8 BOM (For Any characters compatibility)
+fputs($f, "\xEF\xBB\xBF");
 
 // Set column headers 
 $fields = array('Request ID', 'Status', 'Car Maker', 'Car Model', 'Product', 'Jig Name', 'Drawing No', 'Type', 'Qty', 'Purpose', 'Kigyo Budget', 'Date Requested', 'Requested By', 'Required Delivery Date', 'Remarks (fill up if ECT jig is under new design, supplier)', 'Date of Issuance of RFQ', 'RFQ No', 'Target Date of Reply Quotation', 'Item Code');
