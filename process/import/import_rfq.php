@@ -32,7 +32,7 @@ function check_csv($file, $conn)
             $line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' ||
             $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' ||
             $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '' || $line[19] == '' ||
-            $line[20] == '' || $line[21] == '' || $line[22] == '' || $line[23] == '' || $line[24] == '' || $line[25] == '' || $line[26] == '' || $line[27] == '' || $line[27] == ''
+            $line[20] == '' || $line[21] == '' || $line[22] == '' || $line[23] == '' || $line[24] == '' || $line[25] == '' || $line[26] == '' || $line[27] == '' || $line[28] == '' || $line[29] == ''
         ) {
             // IF BLANK DETECTED ERROR
             $hasBlankError++;
@@ -106,12 +106,7 @@ if (isset($_POST['upload'])) {
                     $fsib_no = $line[26];
                     $fsib_code = $line[27];
                     $date_sent_to_internal_signatories = $line[28];
-
-
-                    //$date_i_rfq = DateTime::createFromFormat('m/d/Y', $date_of_issuance_rfq);
-                    //$date_of_issuance_rfq = $date_i_rfq->format('Y-m-d');
-                    //$date_tdrq = DateTime::createFromFormat('m/d/Y', $target_date_reply_quotation);
-                    //$target_date_reply_quotation = $date_tdrq->format('Y-m-d');
+                    $target_approval_date_of_quotation = $line[29];
 
                     $date_rq = str_replace('/', '-', $date_reply_quotation);
                     $date_reply_quotation = date("Y-m-d", strtotime($date_rq));
@@ -122,9 +117,8 @@ if (isset($_POST['upload'])) {
                     $date_dis = str_replace('/', '-', $date_sent_to_internal_signatories);
                     $date_sent_to_internal_signatories = date("Y-m-d", strtotime($date_dis));
 
-
-                    // $date_dis = DateTime::createFromFormat('Y-m-d', $date_sent_to_internal_signatories);
-                    // $date_sent_to_internal_signatories = $date_dis->format('Y-m-d');
+                    $date_tadq = str_replace('/', '-', $target_approval_date_of_quotation);
+                    $target_approval_date_of_quotation = date("Y-m-d", strtotime($date_tadq));
 
                     // CHECK DATA
                     $prevQuery = "SELECT request_id FROM joms_request WHERE request_id = '$request_id' AND status = 'open'";
@@ -146,6 +140,7 @@ if (isset($_POST['upload'])) {
                         fsib_no = '$fsib_no',
                         fsib_code = '$fsib_code',
                         date_sent_to_internal_signatories = '$date_sent_to_internal_signatories',
+                        target_approval_date_of_quotation = '$target_approval_date_of_quotation',
                         c_uploaded_by = '" . $_SESSION['fullname'] . "',
                         c_date_updated = '$server_date_time'
                         WHERE request_id = '$request_id'";

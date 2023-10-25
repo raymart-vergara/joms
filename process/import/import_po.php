@@ -102,9 +102,9 @@ if (isset($_POST['upload'])) {
                     $fsib_no = $line[26];
                     $fsib_code = $line[27];
                     $date_sent_to_internal_signatories = $line[28];
-                    //po
-
                     $target_approval_date_of_quotation = $line[29];
+
+                    //po
                     $approval_date_of_quotation = $line[30];
                     $target_date_submission_to_purchasing = $line[31];
                     $actual_date_of_submission_to_purchasing = $line[32];
@@ -124,10 +124,6 @@ if (isset($_POST['upload'])) {
                     $remarks2 = $line[41];
 
                     // CHECK IF BLANK DATA
-
-                    $date_tadoq = str_replace('/', '-', $target_approval_date_of_quotation);
-                    $target_approval_date_of_quotation = date("Y-m-d", strtotime($date_tadoq));
-
                     $date_adoq = str_replace('/', '-', $approval_date_of_quotation);
                     $approval_date_of_quotation = date("Y-m-d", strtotime($date_adoq));
 
@@ -157,8 +153,8 @@ if (isset($_POST['upload'])) {
                         foreach ($res->fetchALL() as $x) {
                             $id = $x['id'];
                         }
-                        $insert = "INSERT INTO joms_po_process(`request_id`, `target_approval_date_of_quotation`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`,`remarks`, `po_uploaded_by`) 
-                         VALUES ('$request_id', '$target_approval_date_of_quotation', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no',  '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$remarks2', '" . $_SESSION['fullname'] . "')";
+                        $insert = "INSERT INTO joms_po_process(`request_id`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`,`remarks`, `po_uploaded_by`) 
+                         VALUES ('$request_id', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no',  '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$remarks2', '" . $_SESSION['fullname'] . "')";
                         $stmt = $conn->prepare($insert);
                         if ($stmt->execute()) {
                             // $error = 0;
@@ -187,7 +183,7 @@ if (isset($_POST['upload'])) {
                                 $request_id = $j['request_id'];
                                 $stmt = NULL;
                                 $query = "UPDATE joms_po_process SET 
-                                target_approval_date_of_quotation = '$target_approval_date_of_quotation',
+                               
                                 approval_date_of_quotation = '$approval_date_of_quotation',
                                 target_date_submission_to_purchasing = '$target_date_submission_to_purchasing',
                                 actual_date_of_submission_to_purchasing = '$actual_date_of_submission_to_purchasing',

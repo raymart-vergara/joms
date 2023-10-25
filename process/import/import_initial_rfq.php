@@ -3,6 +3,14 @@ session_start();
 // error_reporting(0);
 require '../conn.php';
 
+function validate_date($date) {
+    if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function check_csv($file, $conn)
 {
     // READ FILE
@@ -16,6 +24,11 @@ function check_csv($file, $conn)
     $hasBlankError = 0;
     $hasBlankErrorArr = array();
 
+    $row_valid_arr = array(0,0);
+
+    $notValidDateOfIssuanceRfq = array();
+    $notValidTargetDateReplyQuotation = array();
+
     $message = "";
     $check_csv_row = 2;
 
@@ -27,18 +40,42 @@ function check_csv($file, $conn)
             continue; // Skip blank lines
         }
 
+        $date_i_rfq = str_replace('/', '-', $line[15]);
+        $is_valid_date_requested = validate_date($date_i_rfq);
+        $date_tdrq = str_replace('/', '-', $line[17]);
+        $is_valid_required_delivery_date = validate_date($date_tdrq);
+
         // CHECK IF BLANK DATA
-        if ($line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' || $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' || $line[13] == '' || $line[15] == '' || $line[16] == '' || $line[17] == '') {
+        if ($line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' || $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '' || $line[12] == '' || $line[13] == '' || $line[16] == '') {
             // IF BLANK DETECTED ERROR
             $hasBlankError++;
             $hasError = 1;
             array_push($hasBlankErrorArr, $check_csv_row);
         }
+
+        // CHECK ROW VALIDATION
+        if ($is_valid_date_requested == false && !empty($line[15])) {
+            $hasError = 1;
+            $row_valid_arr[0] = 1;
+            array_push($notValidDateOfIssuanceRfq, $check_csv_row);
+        }
+        if ($is_valid_required_delivery_date == false && !empty($line[17])) {
+            $hasError = 1;
+            $row_valid_arr[1] = 1;
+            array_push($notValidTargetDateReplyQuotation, $check_csv_row);
+        }
     }
-    ;
+    
     fclose($csvFile);
 
     if ($hasError == 1) {
+        if ($row_valid_arr[0] == 1) {
+            $message = $message . 'Invalid Date Requested on row/s ' . implode(", ", $notValidDateOfIssuanceRfq) . '. ';
+        }
+        if ($row_valid_arr[1] == 1) {
+            $message = $message . 'Invalid Required Delivery Date on row/s ' . implode(", ", $notValidTargetDateReplyQuotation) . '. ';
+        }
+
         if ($hasBlankError >= 1) {
             $message = $message . 'Blank Cell Exists on row/s ' . implode(", ", $hasBlankErrorArr) . '. ';
         }
@@ -92,11 +129,15 @@ if (isset($_POST['upload'])) {
                     $target_date_reply_quotation = $line[17];
                     $item_code = $line[18];
 
-                    $date_i_rfq = str_replace('/', '-', $date_of_issuance_rfq);
-                    $date_of_issuance_rfq = date("Y-m-d", strtotime($date_i_rfq));
-
-                    $date_tdrq = str_replace('/', '-', $target_date_reply_quotation);
-                    $target_date_reply_quotation = date("Y-m-d", strtotime($date_tdrq));
+                    if (!empty($date_of_issuance_rfq)) {
+                        $date_i_rfq = str_replace('/', '-', $date_of_issuance_rfq);
+                        $date_of_issuance_rfq = date("Y-m-d", strtotime($date_i_rfq));
+                    }
+                    
+                    if (!empty($target_date_reply_quotation)) {
+                        $date_tdrq = str_replace('/', '-', $target_date_reply_quotation);
+                        $target_date_reply_quotation = date("Y-m-d", strtotime($date_tdrq));
+                    }
 
                     // CHECK DATA
                     $prevQuery = "SELECT id FROM joms_request WHERE request_id = '$request_id' AND status = 'pending'";

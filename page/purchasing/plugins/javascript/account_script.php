@@ -192,7 +192,7 @@
             }
         })
     };
-
+    
     const delete_account = () => {
         var update_id = document.getElementById('update_id').value;
         $.ajax({
