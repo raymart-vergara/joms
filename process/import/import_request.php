@@ -21,8 +21,9 @@ function update_notif_count_joms_request($conn)
     $stmt->execute();
 }
 
-function validate_date($date) {
-    if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+function validate_date($date)
+{
+    if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date)) {
         return true;
     } else {
         return false;
@@ -42,7 +43,7 @@ function check_csv($file, $conn)
     $hasBlankError = 0;
     $hasBlankErrorArr = array();
 
-    $row_valid_arr = array(0,0);
+    $row_valid_arr = array(0, 0);
 
     $notValidDateRequested = array();
     $notValidRequiredDeliveryDate = array();
@@ -60,6 +61,7 @@ function check_csv($file, $conn)
 
         $date_r = str_replace('/', '-', $line[9]);
         $is_valid_date_requested = validate_date($date_r);
+
         $date_rdd = str_replace('/', '-', $line[11]);
         $is_valid_required_delivery_date = validate_date($date_rdd);
 
@@ -83,7 +85,7 @@ function check_csv($file, $conn)
             array_push($notValidRequiredDeliveryDate, $check_csv_row);
         }
     }
-    
+
     fclose($csvFile);
 
     if ($hasError == 1) {
@@ -109,10 +111,8 @@ if (isset($_POST['upload'])) {
 
             // Check CSV before importing
             $chkCsvMsg = check_csv($_FILES['file']['tmp_name'], $conn);
-
             if ($chkCsvMsg == '') {
                 // If no errors found
-
                 //READ FILE
                 $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
                 // SKIP FIRST LINE MAIN
@@ -213,9 +213,7 @@ if (isset($_POST['upload'])) {
                         }
                     </script>';
     }
-
 }
-
 // KILL CONNECTION
 $conn = null;
 ?>
