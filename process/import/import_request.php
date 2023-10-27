@@ -173,7 +173,8 @@ if (isset($_POST['upload'])) {
                         }
                     </script>';
                 } else {
-                    echo '<script>
+                    echo 
+                    '<script>
                         var x = confirm("WITH ERROR! # OF ERRORS ' . $error . ' ");
                         if(x == true){
                             location.replace("../../page/requester/import_request.php");
@@ -184,7 +185,8 @@ if (isset($_POST['upload'])) {
                 }
             } else {
                 // If errors found
-                echo '<script>
+                echo 
+                    '<script>
                         var x = confirm("' . $chkCsvMsg . '");
                         if(x == true){
                             location.replace("../../page/requester/import_request.php");

@@ -3,6 +3,15 @@ session_start();
 // error_reporting(0);
 require '../conn.php';
 
+function validate_date($date)
+{
+    if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function check_csv($file, $conn)
 {
     // READ FILE
@@ -15,6 +24,12 @@ function check_csv($file, $conn)
     $hasError = 0;
     $hasBlankError = 0;
     $hasBlankErrorArr = array();
+
+    $row_valid_arr = array(0, 0, 0);
+
+    $notValidDateReplyQuotation = array();
+    $notValidDateSentInternalSignatories = array();
+    $notValidTargetApprovalDateQuotation = array();
 
     $message = "";
     $check_csv_row = 2;
@@ -103,7 +118,6 @@ if (isset($_POST['upload'])) {
                     $fsib_code = $line[27];
                     $date_sent_to_internal_signatories = $line[28];
                     $target_approval_date_of_quotation = $line[29];
-
                     //po
                     $approval_date_of_quotation = $line[30];
                     $target_date_submission_to_purchasing = $line[31];
@@ -111,11 +125,7 @@ if (isset($_POST['upload'])) {
                     $target_po_date = $line[33];
                     $po_date = $line[34];
                     $po_no = $line[35];
-                    // $ordering_additional_details = $line[36];
-                    // $car_model_for_formula = $line[35];
                     $supplier = $line[36];
-                    // $start_of_usage = $line[37];
-                    // $required_delivery_date2 = $line[38];
                     $etd = $line[37];
                     $eta = $line[38];
                     $actual_arrival_date = $line[39];

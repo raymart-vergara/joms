@@ -72,12 +72,12 @@ function check_csv($file, $conn)
         }
         if ($date_sent_to_internal_signatories == false) {
             $hasError = 1;
-            $row_valid_arr[0] = 1;
+            $row_valid_arr[1] = 1;
             array_push($notValidDateSentInternalSignatories, $check_csv_row);
         }
         if ($target_approval_date_of_quotation == false) {
             $hasError = 1;
-            $row_valid_arr[0] = 1;
+            $row_valid_arr[2] = 1;
             array_push($notValidTargetApprovalDateQuotation, $check_csv_row);
         }
     }
