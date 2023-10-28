@@ -41,7 +41,6 @@ function check_csv($file, $conn)
         if (empty(implode('', $line))) {
             continue; // Skip blank lines
         }
-
         $date_rq = str_replace('/', '-', $line[19]);
         $date_reply_quotation = validate_date($date_rq);
 
@@ -50,7 +49,6 @@ function check_csv($file, $conn)
 
         $date_tadq = str_replace('/', '-', $line[29]);
         $target_approval_date_of_quotation = validate_date($date_tadq);
-
         // CHECK IF BLANK DATA
         if (
             $line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[4] == '' || $line[5] == '' ||
@@ -63,7 +61,6 @@ function check_csv($file, $conn)
             $hasError = 1;
             array_push($hasBlankErrorArr, $check_csv_row);
         }
-
         //Check row validation
         if ($date_reply_quotation == false) {
             $hasError = 1;
@@ -100,7 +97,6 @@ function check_csv($file, $conn)
     }
     return $message;
 }
-
 if (isset($_POST['upload'])) {
     $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
 
@@ -123,7 +119,6 @@ if (isset($_POST['upload'])) {
                     if (empty(implode('', $line))) {
                         continue; // Skip blank lines
                     }
-
                     //pending
                     $request_id = $line[0];
                     $status = $line[1];
@@ -161,8 +156,6 @@ if (isset($_POST['upload'])) {
 
                     $date_rq = str_replace('/', '-', $date_reply_quotation);
                     $date_reply_quotation = date("Y-m-d", strtotime($date_rq));
-
-
 
                     $date_dis = str_replace('/', '-', $date_sent_to_internal_signatories);
                     $date_sent_to_internal_signatories = date("Y-m-d", strtotime($date_dis));
@@ -206,7 +199,6 @@ if (isset($_POST['upload'])) {
                         echo '<script>alert("No Data")</script>';
                     }
                 }
-
                 fclose($csvFile);
                 if ($error == 0) {
                     echo '<script>
