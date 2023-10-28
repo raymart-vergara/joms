@@ -27,9 +27,12 @@ function check_csv($file, $conn)
 
     $row_valid_arr = array(0, 0, 0);
 
-    $notValidDateReplyQuotation = array();
-    $notValidDateSentInternalSignatories = array();
-    $notValidTargetApprovalDateQuotation = array();
+    $notValidApprovalDateOfQuotation = array();
+    $notValildTargetDateSubmissionPurchasing = array();
+    $notValidAcutalDateSumbmissionPurchasing = array();
+    $notVaidTargetPODate = array();
+    $notValidPODate = array();
+    $notValidActualArrivalDate = array();
 
     $message = "";
     $check_csv_row = 2;
@@ -65,7 +68,6 @@ function check_csv($file, $conn)
     }
     return $message;
 }
-
 if (isset($_POST['upload'])) {
     $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
 
