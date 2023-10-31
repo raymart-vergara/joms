@@ -27,12 +27,12 @@ function check_csv($file, $conn)
 
     $row_valid_arr = array(0, 0, 0);
 
-    // $notValidApprovalDateOfQuotation = array();
-    // $notValildTargetDateSubmissionPurchasing = array();
-    // $notValidAcutalDateSumbmissionPurchasing = array();
-    // $notVaidTargetPODate = array();
-    // $notValidPODate = array();
-    // $notValidActualArrivalDate = array();
+    $notValidApprovalDateOfQuotation = array();
+    $notValildTargetDateSubmissionPurchasing = array();
+    $notValidAcutalDateSumbmissionPurchasing = array();
+    $notVaidTargetPODate = array();
+    $notValidPODate = array();
+    $notValidActualArrivalDate = array();
 
     $message = "";
     $check_csv_row = 2;
