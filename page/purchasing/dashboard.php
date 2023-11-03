@@ -86,9 +86,10 @@
                   </div>
                   <div class="row">
                     <div class="col-12">
-                      <div class="card-body table-responsive p-0" style="height: 500px;">
-                        <table class="table table-head-fixed text-nowrap table-bordered table-hover" id="list_of_uploaded_request_table">
-                          <thead style="text-align:center;">
+                    <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
+                      <table class="table table-head-fixed text-nowrap table-bordered table-hover"
+                        id="list_of_uploaded_request_table">
+                        <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
                             <tr>
                               <th>#</th>
                               <th>Status</th>
