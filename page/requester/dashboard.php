@@ -28,8 +28,9 @@
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title"></h3>
-             <button type="button" class="btn btn-danger ml-1" id="btnCancel" data-toggle="modal" data-target="#cancel_request" disabled>
-             Cancel Request</button>
+              <button type="button" class="btn btn-danger ml-1" id="btnCancel" data-toggle="modal"
+                data-target="#cancel_request" disabled>
+                Cancel Request</button>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -81,10 +82,10 @@
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="card-body table-responsive p-0" style="height: 500px;">
+                    <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
                       <table class="table table-head-fixed text-nowrap table-bordered table-hover"
                         id="list_of_request_table">
-                        <thead style="text-align:center;">
+                        <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
                           <tr>
                             <th colspan="17" class="bg-secondary">Request</th>
                             <th colspan="17" class="bg-light">RFQ Process</th>
@@ -92,9 +93,9 @@
                             <th colspan="3" class="bg-light">Installation</th>
                           </tr>
                           <tr>
-                          <th>
-                            <input type="checkbox" name="" id="cancel_check_all" onclick="select_all_func()">
-                          </th>
+                            <th>
+                              <input type="checkbox" name="" id="cancel_check_all" onclick="select_all_func()">
+                            </th>
                             <th>#</th>
                             <th>Status</th>
                             <th>Car Maker</th>
@@ -130,7 +131,7 @@
                             <th>Target Approval date of quotation </th>
                             <th>Uploaded By</th>
 
-                           
+
                             <th>Approval date of quotation </th>
                             <th>Target Date Submission to Purchasing </th>
                             <th>Actual Date of Submission to Purchasing </th>
