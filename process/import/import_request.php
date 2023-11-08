@@ -159,7 +159,6 @@ if (isset($_POST['upload'])) {
                         $error = $error + 1;
                     }
                 }
-
                 fclose($csvFile);
 
                 if ($error == 0) {
