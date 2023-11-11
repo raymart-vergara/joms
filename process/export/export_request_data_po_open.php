@@ -2,7 +2,7 @@
 include '../../process/conn.php';
 $delimiter = ",";
 
-$filename = 'Request Data Request Closed_' . $server_date_only . '.csv';
+$filename = 'Request PO Open_' . $server_date_only . '.csv';
 // Create a file pointer 
 $f = fopen('php://memory', 'w');
 
@@ -18,13 +18,11 @@ fputcsv($f, $fields_exp, $delimiter);
 
 $sql = "SELECT joms_request.id,joms_request.request_id,joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type, joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by, joms_request.required_delivery_date, joms_request.remarks,
 joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.item_code, joms_rfq_process.date_reply_quotation, joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd,joms_rfq_process.unit_price_php, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories,
-joms_rfq_process.target_approval_date_of_quotation, joms_po_process.approval_date_of_quotation, joms_po_process.target_date_submission_to_purchasing, joms_po_process.actual_date_of_submission_to_purchasing, joms_po_process.target_po_date, joms_po_process.po_date, joms_po_process.po_no, joms_po_process.supplier, joms_po_process.etd, joms_po_process.eta, joms_po_process.actual_arrival_date, joms_po_process.invoice_no, joms_po_process.remarks AS remarks2,
-joms_installation.installation_date
+joms_rfq_process.target_approval_date_of_quotation, joms_po_process.approval_date_of_quotation, joms_po_process.target_date_submission_to_purchasing, joms_po_process.actual_date_of_submission_to_purchasing, joms_po_process.target_po_date, joms_po_process.po_date, joms_po_process.po_no, joms_po_process.supplier, joms_po_process.etd, joms_po_process.eta
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 	LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id
-	LEFT JOIN joms_installation ON joms_installation.request_id = joms_request.request_id
-	WHERE joms_request.status = 'closed' AND joms_installation.installation_date IS NULL ";
+	WHERE joms_request.status = 'open'";
 
 	$stmt = $conn->prepare($sql);
 	$stmt->execute();
@@ -79,11 +77,10 @@ joms_installation.installation_date
 				// $row['required_delivery_date2'],
 				$row['etd'],
 				$row['eta'],
-				$row['actual_arrival_date'],
-				$row['invoice_no'],
+				'',
+				'',
 				// $row['classification'],
-				$row['remarks2'],
-				
+				''
 			);
 			fputcsv($f, $lineData, $delimiter);
 	}

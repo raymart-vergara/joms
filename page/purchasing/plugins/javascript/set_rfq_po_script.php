@@ -5,7 +5,7 @@
             $('#accounts_bar').hide();
         }
 
-        search_request_with_rfq();
+        //search_request_with_rfq();
         filter_rfq_process();
         sessionStorage.setItem('notif_new_joms_request', 0);
         load_notif_ame3();
@@ -17,23 +17,23 @@
 
     });
 
-    const search_request_with_rfq = () => {
-        $('#spinner').css('display', 'block');
-        $.ajax({
-            url: '../../process/purchasing/po.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'fetch_request_with_po',
-            }, success: function (response) {
-                document.getElementById('list_of_uploaded_request_with_po').innerHTML = response;
-                $('#spinner').fadeOut();
-                let count = $('#list_of_uploaded_request_with_po_table tbody tr').length;
-                $('#count_view').html(count);
+    // const search_request_with_rfq = () => {
+    //     $('#spinner').css('display', 'block');
+    //     $.ajax({
+    //         url: '../../process/purchasing/po.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'fetch_request_with_po',
+    //         }, success: function (response) {
+    //             document.getElementById('list_of_uploaded_request_with_po').innerHTML = response;
+    //             $('#spinner').fadeOut();
+    //             let count = $('#list_of_uploaded_request_with_po_table tbody tr').length;
+    //             $('#count_view').html(count);
                 
-            }
-        });
-    }
+    //         }
+    //     });
+    // }
 
 
     const import_initial_rfq_button = () => {
