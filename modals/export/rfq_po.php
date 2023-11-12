@@ -72,11 +72,11 @@
                   Export With Complete RFQ + PO</h4>
               </div>
               <div class="icon" type="button"
-                onclick="location.replace('../../process/export/export_request_data_closed.php')">
+                onclick="location.replace('../../process/export/export_request_data_po_open.php')">
                 <i class="fas fa-download"></i>
               </div>
               <a class="small-box-footer" type="button" class="btn btn-success" class="close" data-dismiss="modal"
-                onclick="location.replace('../../process/export/export_request_data_closed.php')">
+                onclick="location.replace('../../process/export/export_request_data_po_open.php')">
                 Export Closed
                 Status <i class="fas fa-arrow-circle-right"></i>
               </a>
