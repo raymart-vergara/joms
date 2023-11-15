@@ -165,6 +165,7 @@ if (isset($_POST['upload'])) {
                 fgetcsv($csvFile);
                 // PARSE
                 $error = 0;
+
                 while (($line = fgetcsv($csvFile)) !== false) {
                     // Check if the row is blank or consists only of whitespace
                     if (empty(implode('', $line))) {
@@ -236,7 +237,7 @@ if (isset($_POST['upload'])) {
                         $date_aad = str_replace('/', '-', $actual_arrival_date);
                         $actual_arrival_date = date("Y-m-d", strtotime($date_aad));
                     }
-                    
+
                     // CHECK DATA
                     $prevQuery = "SELECT joms_request.id, joms_po_process.request_id FROM joms_request 
                          LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id 
@@ -246,12 +247,18 @@ if (isset($_POST['upload'])) {
                     $res = $conn->prepare($prevQuery);
                     $res->execute();
                     if ($res->rowCount() > 0) {
-                        foreach ($res->fetchALL() as $x) {
-                            $id = $x['id'];
-                            $request_id_po = $j['request_id'];
+
+                        // OPEN REQUEST
+
+                        foreach ($res->fetchALL() as $row) {
+                            $id = $row['id'];
+                            $request_id_po = $row['request_id'];
                         }
 
                         if (!empty($request_id_po)) {
+
+                            // UPDATE OPEN REQUEST ON PO TABLE
+
                             $query = "UPDATE joms_po_process SET 
                                
                                 approval_date_of_quotation = '$approval_date_of_quotation',
@@ -273,6 +280,8 @@ if (isset($_POST['upload'])) {
 
                             $stmt = $conn->prepare($query);
                             if ($stmt->execute()) {
+
+                                // UPDATE STATUS
                                 if (!empty($actual_arrival_date)) {
                                     // $error = 0;
                                     $stmt = NULL;
@@ -289,6 +298,9 @@ if (isset($_POST['upload'])) {
                                 $error = $error + 1;
                             }
                         } else {
+
+                            // INSERT OPEN REQUEST TO PO TABLE
+
                             $insert = "INSERT INTO joms_po_process(`request_id`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `supplier`, `etd`, `eta`";
                             if (!empty($actual_arrival_date)) {
                                 $insert = $insert . ", `actual_arrival_date`, `invoice_no`, `remarks`";
@@ -303,6 +315,8 @@ if (isset($_POST['upload'])) {
                             
                             $stmt = $conn->prepare($insert);
                             if ($stmt->execute()) {
+
+                                // UPDATE STATUS
                                 if (!empty($actual_arrival_date)) {
                                     // $error = 0;
                                     $stmt = NULL;
@@ -320,102 +334,10 @@ if (isset($_POST['upload'])) {
                             }
                         }
 
-                        // $prevQuery2 = "SELECT request_id FROM joms_po_process WHERE request_id = '$request_id'";
-                        // $res2 = $conn->prepare($prevQuery2);
-                        // if ($res2->rowCount() > 0) {
-                        //     foreach ($res2->fetchALL() as $j) {
-                        //         $request_id = $j['request_id'];
-                        //     }
-
-                        //     $query = "UPDATE joms_po_process SET 
-                               
-                        //         approval_date_of_quotation = '$approval_date_of_quotation',
-                        //         target_date_submission_to_purchasing = '$target_date_submission_to_purchasing',
-                        //         actual_date_of_submission_to_purchasing = '$actual_date_of_submission_to_purchasing',
-                        //         target_po_date = '$target_po_date',
-                        //         po_date = '$po_date',
-                        //         po_no = '$po_no',
-                        //         -- ordering_additional_details = '$ordering_additional_details',
-                        //         supplier = '$supplier',
-                        //         etd = '$etd', 
-                        //         eta = '$eta'";
-
-                        //     if (!empty($actual_arrival_date)) {
-                        //         $query = $query . ", actual_arrival_date = '$actual_arrival_date', invoice_no = '$invoice_no', remarks = '$remarks2'";
-                        //     }
-                            
-                        //     $query = $query . ", po_uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
-
-                        //     // $query = "UPDATE joms_po_process SET 
-                               
-                        //     //     approval_date_of_quotation = '$approval_date_of_quotation',
-                        //     //     target_date_submission_to_purchasing = '$target_date_submission_to_purchasing',
-                        //     //     actual_date_of_submission_to_purchasing = '$actual_date_of_submission_to_purchasing',
-                        //     //     target_po_date = '$target_po_date',
-                        //     //     po_date = '$po_date',
-                        //     //     po_no = '$po_no',
-                        //     //     -- ordering_additional_details = '$ordering_additional_details',
-                        //     //     supplier = '$supplier',
-                        //     //     etd = '$etd', 
-                        //     //     eta = '$eta',
-                        //     //     actual_arrival_date = '$actual_arrival_date',
-                        //     //     invoice_no = '$invoice_no',
-                        //     //     -- classification = '$classification',
-                        //     //     remarks = '$remarks2', 
-                        //     //     po_uploaded_by = '" . $_SESSION['fullname'] . "' WHERE request_id = '$request_id'";
-                        //     $stmt = $conn->prepare($query);
-                        //     if ($stmt->execute()) {
-                        //         if (!empty($actual_arrival_date)) {
-                        //             // $error = 0;
-                        //             $stmt = NULL;
-
-                        //             $query = "UPDATE joms_request SET status = 'closed' WHERE id = '$id'";
-                        //             $stmt = $conn->prepare($query);
-                        //             if ($stmt->execute()) {
-                        //                 $error = 0;
-                        //             } else {
-                        //                 $error = $error + 1;
-                        //             }
-                        //         }
-                        //     } else {
-                        //         $error = $error + 1;
-                        //     }
-                        // } else {
-                        //     // $insert = "INSERT INTO joms_po_process(`request_id`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `supplier`, `etd`, `eta`, `actual_arrival_date`, `invoice_no`,`remarks`, `po_uploaded_by`) 
-                        //     // VALUES ('$request_id', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no',  '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$remarks2', '" . $_SESSION['fullname'] . "')";
-
-                        //     $insert = "INSERT INTO joms_po_process(`request_id`, `approval_date_of_quotation`, `target_date_submission_to_purchasing`, `actual_date_of_submission_to_purchasing`, `target_po_date`, `po_date`, `po_no`, `supplier`, `etd`, `eta`";
-                        //     if (!empty($actual_arrival_date)) {
-                        //         $insert = $insert . ", `actual_arrival_date`, `invoice_no`, `remarks`";
-                        //     }
-                        //     $insert = $insert . ", `po_uploaded_by`)";
-
-                        //     if (!empty($actual_arrival_date)) {
-                        //         $insert = $insert . " VALUES ('$request_id', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no',  '$supplier', '$etd', '$eta', '$actual_arrival_date', '$invoice_no', '$remarks2', '" . $_SESSION['fullname'] . "')";
-                        //     } else {
-                        //         $insert = $insert . " VALUES ('$request_id', '$approval_date_of_quotation', '$target_date_submission_to_purchasing', '$actual_date_of_submission_to_purchasing', '$target_po_date', '$po_date', '$po_no',  '$supplier', '$etd', '$eta', '" . $_SESSION['fullname'] . "')";
-                        //     }
-                            
-                        //     $stmt = $conn->prepare($insert);
-                        //     if ($stmt->execute()) {
-                        //         if (!empty($actual_arrival_date)) {
-                        //             // $error = 0;
-                        //             $stmt = NULL;
-
-                        //             $query = "UPDATE joms_request SET status = 'closed' WHERE id = '$id'";
-                        //             $stmt = $conn->prepare($query);
-                        //             if ($stmt->execute()) {
-                        //                 $error = 0;
-                        //             } else {
-                        //                 $error = $error + 1;
-                        //             }
-                        //         }
-                        //     } else {
-                        //         $error = $error + 1;
-                        //     }
-                        // }
-
                     } else {
+
+                        // CLOSED REQUEST
+
                         // $stmt = NULL;
 
                         // $query = "SELECT joms_request.request_id FROM joms_request 
@@ -478,13 +400,13 @@ if (isset($_POST['upload'])) {
                 fclose($csvFile);
                 if ($error == 0) {
                     echo '<script>
-                    var x = confirm("SUCCESS!");
-                    if(x == true){
-                        location.replace("../../page/purchasing/set_rfq_po.php");
-                    }else{
-                        location.replace("../../page/purchasing/set_rfq_po.php");
-                    }
-                </script>';
+                        var x = confirm("SUCCESS!");
+                        if(x == true){
+                            location.replace("../../page/purchasing/set_rfq_po.php");
+                        }else{
+                            location.replace("../../page/purchasing/set_rfq_po.php");
+                        }
+                    </script>';
                 } else {
                     echo '<script>
                     var x = confirm("WITH ERROR! # OF ERRORS ' . $error . '");
