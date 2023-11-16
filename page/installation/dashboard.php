@@ -71,20 +71,23 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
-                      <table class="table table-head-fixed text-nowrap table-bordered table-hover"
-                        id="list_of_request_table">
-                        <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
+                  <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
+                    <table class="table table-head-fixed text-nowrap table-bordered table-hover"
+                      id="list_of_request_table">
+                      <thead
+                        style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
                         <tr>
-                        <th colspan="17" class="bg-secondary">Request</th>
-                            <th colspan="17" class="bg-light">RFQ Process</th>
-                            <th colspan="13" class="bg-secondary">PO Process</th>
-                            <th colspan="3" class="bg-light">Installation</th>
+                          <th colspan="17" class="bg-secondary">Request</th>
+                          <th colspan="17" class="bg-light">RFQ Process</th>
+                          <th colspan="9" class="bg-secondary">PO Process</th>
+                          <th colspan="4" class="bg-light">Delivery</th>
+                          <th colspan="3" class="bg-secondary">Installation</th>
                         </tr>
                         <tr>
                           <th>
                             <input type="checkbox" name="" id="installation_check_all" onclick="select_all_func()">
                           </th>
+                          <!-- Request -->
                           <th>#</th>
                           <th>Status</th>
                           <th>Car Maker</th>
@@ -101,13 +104,13 @@
                           <th>Required Delivery Date </th>
                           <th>Remarks (fill up if ECT jig is under new design, supplier) </th>
                           <th>Uploaded By</th>
-
+<!-- Initial RFQ -->
                           <th>Date of Issuance of RFQ </th>
                           <th>RFQ No </th>
                           <th>Target Date of Reply Quotation </th>
                           <th>Item Code </th>
                           <th>Uploaded By</th>
-
+<!-- RFQ -->
                           <th>Date of Reply Quotation </th>
                           <th>LEADTIME(based on quotation)</th>
                           <th>Quotation No </th>
@@ -120,24 +123,22 @@
                           <th>Date sent to Internal Signatories </th>
                           <th>Target Approval date of quotation </th>
                           <th>Uploaded By</th>
-
-                    
+                          <!-- PO -->
                           <th>Approval date of quotation </th>
                           <th>Target Date Submission to Purchasing </th>
                           <th>Actual Date of Submission to Purchasing </th>
                           <th>Target PO Date</th>
                           <th>PO Date </th>
                           <th>PO No. </th>
-                          <!-- <th>Ordering Additional Details </th> -->
                           <th>Supplier </th>
                           <th>ETD </th>
                           <th>ETA </th>
-                          <th>Actual Arrival date </th>
+                          <!-- Delivery -->
                           <th>Invoice No </th>
-                          <!-- <th>Classification </th> -->
                           <th>Remarks </th>
+                          <th>Actual Arrival date </th>
                           <th>Uploaded By</th>
-
+          <!-- Installation -->
                           <th>Line Number</th>
                           <th>Installation Date</th>
                           <th>Uploaded By</th>
@@ -199,72 +200,74 @@
                 </div>
                 <div class="row">
                   <div class="col-12 ml-0 p-0">
-                  <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
+                    <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
                       <table class="table table-head-fixed text-nowrap table-bordered table-hover"
                         id="list_of_request_table2">
-                        <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
+                        <thead
+                          style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
                           <tr>
                             <th colspan="16" class="bg-secondary">Request</th>
                             <th colspan="17" class="bg-light">RFQ Process</th>
-                            <th colspan="13" class="bg-secondary">PO Process</th>
-                            <th colspan="3" class="bg-light">Installation</th>
+                            <th colspan="9" class="bg-secondary">PO Process</th>
+                            <th colspan="4" class="bg-light">Delivery</th>
+                            <th colspan="3" class="bg-secondary">Installation</th>
                           </tr>
                           <tr>
-                          <th>#</th>
-                          <th>Status</th>
-                          <th>Car Maker</th>
-                          <th>Car Model</th>
-                          <th>Product </th>
-                          <th>Jig Name </th>
-                          <th>Drawing No </th>
-                          <th>Type </th>
-                          <th>Qty </th>
-                          <th>Purpose </th>
-                          <th>Kigyo Budget </th>
-                          <th>Date Requested </th>
-                          <th>Requested By </th>
-                          <th>Required Delivery Date </th>
-                          <th>Remarks (fill up if ECT jig is under new design, supplier) </th>
-                          <th>Uploaded By</th>
+                            <th>#</th>
+                            <th>Status</th>
+                            <th>Car Maker</th>
+                            <th>Car Model</th>
+                            <th>Product </th>
+                            <th>Jig Name </th>
+                            <th>Drawing No </th>
+                            <th>Type </th>
+                            <th>Qty </th>
+                            <th>Purpose </th>
+                            <th>Kigyo Budget </th>
+                            <th>Date Requested </th>
+                            <th>Requested By </th>
+                            <th>Required Delivery Date </th>
+                            <th>Remarks (fill up if ECT jig is under new design, supplier) </th>
+                            <th>Uploaded By</th>
 
-                          <th>Date of Issuance of RFQ </th>
-                          <th>RFQ No </th>
-                          <th>Target Date of Reply Quotation </th>
-                          <th>Item Code </th>
-                          <th>Uploaded By</th>
+                            <th>Date of Issuance of RFQ </th>
+                            <th>RFQ No </th>
+                            <th>Target Date of Reply Quotation </th>
+                            <th>Item Code </th>
+                            <th>Uploaded By</th>
 
-                          <th>Date of Reply Quotation </th>
-                          <th>LEADTIME(based on quotation)</th>
-                          <th>Quotation No </th>
-                          <th>Unit Price JPY </th>
-                          <th>Unit Price USD </th>
-                          <th>Unit Price PHP </th>
-                          <th>Total Amount </th>
-                          <th>FSIB No. </th>
-                          <th>FSIB Code </th>
-                          <th>Date sent to Internal Signatories </th>
-                          <th>Target Approval date of quotation </th>
-                          <th>Uploaded By</th>
+                            <th>Date of Reply Quotation </th>
+                            <th>LEADTIME(based on quotation)</th>
+                            <th>Quotation No </th>
+                            <th>Unit Price JPY </th>
+                            <th>Unit Price USD </th>
+                            <th>Unit Price PHP </th>
+                            <th>Total Amount </th>
+                            <th>FSIB No. </th>
+                            <th>FSIB Code </th>
+                            <th>Date sent to Internal Signatories </th>
+                            <th>Target Approval date of quotation </th>
+                            <th>Uploaded By</th>
 
-                          <th>Approval date of quotation </th>
-                          <th>Target Date Submission to Purchasing </th>
-                          <th>Actual Date of Submission to Purchasing </th>
-                          <th>Target PO Date</th>
-                          <th>PO Date </th>
-                          <th>PO No. </th>
-                          <!-- <th>Ordering Additional Details </th> -->
-                          <th>Supplier </th>
-                          <th>ETD </th>
-                          <th>ETA </th>
-                          <th>Actual Arrival date </th>
-                          <th>Invoice No </th>
-                          <!-- <th>Classification </th> -->
-                          <th>Remarks </th>
-                          <th>Uploaded By</th>
-
-                          <th>Line Number</th>
-                          <th>Installation Date</th>
-                          <th>Uploaded By</th>
+                            <th>Approval date of quotation </th>
+                            <th>Target Date Submission to Purchasing </th>
+                            <th>Actual Date of Submission to Purchasing </th>
+                            <th>Target PO Date</th>
+                            <th>PO Date </th>
+                            <th>PO No. </th>
+                            <!-- <th>Ordering Additional Details </th> -->
+                            <th>Supplier </th>
+                            <th>ETD </th>
+                            <th>ETA </th>
+                            <!-- Delivery -->
+                            <th>Invoice No </th>
+                            <th>Remarks </th>
+                            <th>Actual Arrival date </th>
+                            <th>Uploaded By</th>
+                            <!-- Installation -->
+                            <th>Line Number</th>
+                            <th>Installation Date</th>
+                            <th>Uploaded By</th>
                           </tr>
                         </thead>
                         <!-- get the id for javascript functions para madisplay ang mga data -->
