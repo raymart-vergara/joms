@@ -4,7 +4,7 @@
   | <strong>Co-Developers:</strong>  Vince Alcantara, Raymart Vergara
 </div>
   <div class=""> <strong>Copyright &copy; 2023 | All Rights Reserved</div>
-  <div class="">  <b>Version</b> 2.1.1</div>
+  <div class="">  <b>Version</b> 2.1.2</div>
 </div>
   </footer>
 <?php

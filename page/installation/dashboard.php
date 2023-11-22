@@ -77,9 +77,10 @@
                         <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
                         <tr>
                         <th colspan="17" class="bg-secondary">Request</th>
-                            <th colspan="17" class="bg-light">RFQ Process</th>
-                            <th colspan="13" class="bg-secondary">PO Process</th>
-                            <th colspan="3" class="bg-light">Installation</th>
+                          <th colspan="17" class="bg-light">RFQ Process</th>
+                          <th colspan="9" class="bg-secondary">PO Process</th>
+                          <th colspan="4" class="bg-light">Delivery</th>
+                          <th colspan="3" class="bg-secondary">Installation</th>
                         </tr>
                         <tr>
                           <th>
@@ -132,10 +133,11 @@
                           <th>Supplier </th>
                           <th>ETD </th>
                           <th>ETA </th>
-                          <th>Actual Arrival date </th>
+                        
                           <th>Invoice No </th>
                           <!-- <th>Classification </th> -->
                           <th>Remarks </th>
+                          <th>Actual Arrival date </th>
                           <th>Uploaded By</th>
 
                           <th>Line Number</th>
@@ -206,8 +208,9 @@
                           <tr>
                             <th colspan="16" class="bg-secondary">Request</th>
                             <th colspan="17" class="bg-light">RFQ Process</th>
-                            <th colspan="13" class="bg-secondary">PO Process</th>
-                            <th colspan="3" class="bg-light">Installation</th>
+                            <th colspan="9" class="bg-secondary">PO Process</th>
+                            <th colspan="4" class="bg-light">Delivery</th>
+                            <th colspan="3" class="bg-secondary">Installation</th>
                           </tr>
                           <tr>
                           <th>#</th>
@@ -256,10 +259,11 @@
                           <th>Supplier </th>
                           <th>ETD </th>
                           <th>ETA </th>
-                          <th>Actual Arrival date </th>
+                          
                           <th>Invoice No </th>
                           <!-- <th>Classification </th> -->
                           <th>Remarks </th>
+                          <th>Actual Arrival date </th>
                           <th>Uploaded By</th>
 
                           <th>Line Number</th>

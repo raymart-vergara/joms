@@ -143,10 +143,9 @@ if ($method == 'fetch_request') {
 			// echo '<td style = "'.$color3.'">'.$j['required_delivery_date2'].'</td>';
 			echo '<td style = "' . $color3 . '">' . $j['etd'] . '</td>';
 			echo '<td style = "' . $color3 . '">' . $j['eta'] . '</td>';
-			echo '<td style = "' . $color3 . '">' . $j['actual_arrival_date'] . '</td>';
 			echo '<td style = "' . $color3 . '">' . $j['invoice_no'] . '</td>';
-			// echo '<td style = "' . $color3 . '">' . $j['classification'] . '</td>';
 			echo '<td style = "' . $color3 . '">' . $j['remarks2'] . '</td>';
+			echo '<td style = "' . $color3 . '">' . $j['actual_arrival_date'] . '</td>';
 			echo '<td style = "' . $color3 . '">' . $j['po_uploaded_by'] . '</td>';
 
 			echo '<td>' . $j['line_no'] . '</td>';
