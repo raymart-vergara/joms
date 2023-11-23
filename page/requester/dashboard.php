@@ -144,7 +144,6 @@
                             <th>Supplier </th>
                             <th>ETD </th>
                             <th>ETA </th>
-                            <th>Actual Arrival date </th>
                             <th>Invoice No </th>
                             <th>Remarks </th>
                             <th>Actual Arrival date </th>

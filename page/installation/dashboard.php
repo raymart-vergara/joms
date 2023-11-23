@@ -133,7 +133,6 @@
                           <th>Supplier </th>
                           <th>ETD </th>
                           <th>ETA </th>
-                          <th>Actual Arrival date </th>
                           <th>Invoice No </th>
                           <th>Remarks </th>
                           <th>Actual Arrival date </th>
@@ -259,10 +258,10 @@
                           <th>Supplier </th>
                           <th>ETD </th>
                           <th>ETA </th>
-                          <th>Actual Arrival date </th>
                           <th>Invoice No </th>
                           <!-- <th>Classification </th> -->
                           <th>Remarks </th>
+                          <th>Actual Arrival date </th>
                           <th>Uploaded By</th>
 
                           <th>Line Number</th>
