@@ -102,10 +102,6 @@
                           <b><span class="h3" id="count_view"></span></b><br>
                           <label>Count</label>
                         </div>
-                        <!-- <div class="col offset-sm-9">
-                        <a href="#" class="btn btn-secondary"> Export Request
-                          Data </a>
-                        </div> -->
                       </div>
                      
                       <div class="row">
