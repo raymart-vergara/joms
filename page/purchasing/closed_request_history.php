@@ -98,6 +98,8 @@
                             <th colspan="17" class="bg-light">RFQ Process</th>
                             <th colspan="9" class="bg-secondary">PO Process</th>
                             <th colspan="4" class="bg-light">Delivery</th>
+                            <th colspan="9" class="bg-secondary">PO Process</th>
+                            <th colspan="4" class="bg-light">Delivery</th>
                             <tr>
 
                               <th>#</th>
@@ -146,9 +148,8 @@
                               <th>Supplier </th>
                               <th>ETD </th>
                               <th>ETA </th>
-                           
+                              <th>Actual Arrival date </th>
                               <th>Invoice No </th>
-                              <!-- <th>Classification </th> -->
                               <th>Remarks </th>
                               <th>Actual Arrival date </th>
                               <th>Upload By </th>

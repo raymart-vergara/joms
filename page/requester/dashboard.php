@@ -85,7 +85,8 @@
                     <div class="card-body table-responsive p-0" style="height: 500px; overflow-y: auto;">
                       <table class="table table-head-fixed text-nowrap table-bordered table-hover"
                         id="list_of_request_table">
-                        <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
+                        <thead
+                          style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
                           <tr>
                           <th colspan="17" class="bg-secondary">Request</th>
                             <th colspan="17" class="bg-light">RFQ Process</th>
@@ -143,13 +144,12 @@
                             <th>Supplier </th>
                             <th>ETD </th>
                             <th>ETA </th>
-                            
+                            <th>Actual Arrival date </th>
                             <th>Invoice No </th>
-                            <!-- <th>Classification </th> -->
                             <th>Remarks </th>
                             <th>Actual Arrival date </th>
                             <th>Uploaded By</th>
-
+                            <!-- Installation -->
                             <th>Line Number</th>
                             <th>Installation Date</th>
                             <th>Uploaded By</th>
