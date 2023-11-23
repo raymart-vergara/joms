@@ -69,10 +69,9 @@ if ($method == 'get_closed_request_history') {
 			echo '<td>' . $j['supplier'] . '</td>';
 			echo '<td>' . $j['etd'] . '</td>';
 			echo '<td>' . $j['eta'] . '</td>';
-			echo '<td>' . $j['actual_arrival_date'] . '</td>';
 			echo '<td>' . $j['invoice_no'] . '</td>';
-			// echo '<td>' . $j['classification'] . '</td>';
 			echo '<td>' . $j['remarks2'] . '</td>';
+			echo '<td>' . $j['actual_arrival_date'] . '</td>';
 			echo '<td>' . $j['po_uploaded_by'] . '</td>';
 
 			echo '</tr>';

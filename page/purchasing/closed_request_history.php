@@ -94,8 +94,10 @@
                       <table class="table table-head-fixed text-nowrap table-bordered table-hover"
                         id="list_of_uploaded_request_with_po_table">
                         <thead style="text-align:center; position: sticky;top: 0; z-index: 1;  background-color: #f8f9fa;">
-                            <th colspan="16" class="bg-secondary">Request</th>
+                        <th colspan="16" class="bg-secondary">Request</th>
                             <th colspan="17" class="bg-light">RFQ Process</th>
+                            <th colspan="9" class="bg-secondary">PO Process</th>
+                            <th colspan="4" class="bg-light">Delivery</th>
                             <th colspan="9" class="bg-secondary">PO Process</th>
                             <th colspan="4" class="bg-light">Delivery</th>
                             <tr>
@@ -146,7 +148,7 @@
                               <th>Supplier </th>
                               <th>ETD </th>
                               <th>ETA </th>
-                            
+                              <th>Actual Arrival date </th>
                               <th>Invoice No </th>
                               <th>Remarks </th>
                               <th>Actual Arrival date </th>
