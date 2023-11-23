@@ -98,8 +98,6 @@
                             <th colspan="17" class="bg-light">RFQ Process</th>
                             <th colspan="9" class="bg-secondary">PO Process</th>
                             <th colspan="4" class="bg-light">Delivery</th>
-                            <th colspan="9" class="bg-secondary">PO Process</th>
-                            <th colspan="4" class="bg-light">Delivery</th>
                             <tr>
 
                               <th>#</th>
