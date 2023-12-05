@@ -40,17 +40,6 @@
             <!-- /.card-header -->
             <div class="card-body">
               <div class="container-fluid">
-                <!-- <div class="row mb-2">
-                  <div class="col-md-3">
-                    
-                    
-                  </div>
-                  <div class="col-sm-1 text-center">
-                    <div class="align-self-center">
-                     
-                    </div>
-                  </div>
-                </div> -->
                 <div class="d-flex">
                   <div class="p-2">
                     <button class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#install_modal"
