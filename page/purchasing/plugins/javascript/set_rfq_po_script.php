@@ -191,23 +191,24 @@
                         console.log(response);
                         Swal.fire({
                             icon: 'success',
-                            title: 'Installation Date Successfully Updated',
+                            title: 'Cancellation Success!!',
                             text: 'Success',
                             showConfirmButton: false,
                             timer: 1000
                         });
+                        $('#cancel_request').modal('hide');
                         $('#cancel_date').val('');
                         $('#cancel_reason').val('');
                         search_request_with_rfq();
                         filter_rfq_process();
-                        $('#cancel_request').modal('hide');
+                       
                     }
                 });
             }
             else {
                 Swal.fire({
                     icon: 'info',
-                    title: 'Please Select For Installation !!!',
+                    title: 'Please Select For Cancellation !!!',
                     text: 'Information',
                     showConfirmButton: false,
                     timer: 1000

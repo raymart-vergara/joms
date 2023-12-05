@@ -127,7 +127,7 @@ if ($method == 'filter_rfq_process') {
 	} else if ($rfq_status_search == "open_all") {
 		$query = $query . " WHERE joms_request.status = 'open'";
 	} else if ($rfq_status_search == "cancelled") {
-		$query = $query . " WHERE joms_request.status = 'cancelled'";
+		$query = $query . " WHERE joms_request.status = 'cancelled' ORDER BY cancel_date DESC";
 	}
 
 	$stmt = $conn->prepare($query);
