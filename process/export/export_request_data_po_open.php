@@ -22,7 +22,7 @@ joms_rfq_process.target_approval_date_of_quotation, joms_po_process.approval_dat
 	FROM joms_request
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 	LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id
-	WHERE joms_request.status = 'open'";
+	WHERE joms_request.status = 'open' AND  `qty` IS NOT NULL AND `rfq_no` IS NOT NULL AND `total_amount` IS NOT NULL AND `approval_date_of_quotation` IS NOT NULL";
 
 	$stmt = $conn->prepare($sql);
 	$stmt->execute();
