@@ -6,6 +6,9 @@ $method = $_POST['method'];
 if ($method == 'get_closed_request_history') {
 	$history_date_from = $_POST['history_date_from'];
 	$history_date_to = $_POST['history_date_to'];
+	$search_rfq = $_POST['search_rfq'];
+	$search_jigname = $_POST['search_jigname'];
+	$search_carmaker = $_POST['search_carmaker'];
 	$c = 0;
 	$query = "SELECT joms_request.id,joms_request.status, joms_request.carmaker, joms_request.carmodel, joms_request.product, joms_request.jigname, joms_request.drawing_no, joms_request.type, joms_request.qty, joms_request.purpose, joms_request.budget, joms_request.date_requested, joms_request.requested_by, joms_request.required_delivery_date, joms_request.remarks, joms_request.uploaded_by,
 	joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process.target_date_reply_quotation, joms_rfq_process.item_code, joms_rfq_process.date_reply_quotation, joms_rfq_process.leadtime, joms_rfq_process.quotation_no, joms_rfq_process.unit_price_jpy, joms_rfq_process.unit_price_usd, joms_rfq_process.unit_price_php, joms_rfq_process.total_amount, joms_rfq_process.fsib_no, joms_rfq_process.fsib_code, joms_rfq_process.date_sent_to_internal_signatories, joms_rfq_process.i_uploaded_by, joms_rfq_process.c_uploaded_by, 
@@ -15,7 +18,7 @@ if ($method == 'get_closed_request_history') {
 		LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 		LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id
 		LEFT JOIN joms_installation ON joms_installation.request_id = joms_request.request_id
-		WHERE joms_request.status = 'closed' AND (joms_po_process.date_updated >= '$history_date_from' AND joms_po_process.date_updated <= '$history_date_to')";
+		WHERE joms_request.status = 'closed' AND (joms_po_process.date_updated >= '$history_date_from' AND joms_po_process.date_updated <= '$history_date_to') AND  `rfq_no` LIKE '$search_rfq%' AND `jigname` LIKE '$search_jigname%' AND `carmaker` LIKE '$search_carmaker%'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

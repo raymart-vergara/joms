@@ -26,13 +26,16 @@ const search_request_with_rfq =()=>{
 }
 
 const get_closed_request_history = () => {
-    var history_date_from = document.getElementById("history_date_from").value.trim();
-    var history_date_to = document.getElementById("history_date_to").value.trim();
-    if (history_date_from == '' || history_date_to == '') {
+    let history_date_from = document.getElementById("history_date_from").value.trim();
+    let history_date_to = document.getElementById("history_date_to").value.trim();
+    let search_rfq = document.getElementById("search_rfq").value.trim();
+    let search_jigname = document.getElementById("search_jigname").value.trim();
+    let search_carmaker = document.getElementById("search_carmaker").value.trim();
+    if (history_date_from == '' || history_date_to == '' ) {
         Swal.fire({
             icon: 'info',
-            title: 'Closed Request History',
-            text: 'Fill out all date fields',
+            title: 'Fill out all fields',
+            text: 'Closed Request History',
             showConfirmButton: false,
             timer : 1000
         });
@@ -44,7 +47,11 @@ const get_closed_request_history = () => {
             data: {
                 method: 'get_closed_request_history',
                 history_date_from: history_date_from,
-                history_date_to: history_date_to
+                history_date_to: history_date_to,
+                search_rfq:search_rfq,
+                search_jigname:search_jigname,
+                search_carmaker:search_carmaker
+
             }, 
             beforeSend: (jqXHR, settings) => {
                 $('#spinner').css('display','block');
@@ -68,8 +75,11 @@ const get_closed_request_history = () => {
 const export_closed_request_history = () => {
     var history_date_from = document.getElementById("history_date_from").value.trim();
     var history_date_to = document.getElementById("history_date_to").value.trim();
-    if (history_date_from != '' || history_date_to != '') {
-        window.open('../../process/export/export_closed_request_history.php?history_date_from='+history_date_from+'&history_date_to='+history_date_to,'_blank');
+    let search_rfq = document.getElementById("search_rfq").value.trim();
+    let search_jigname = document.getElementById("search_jigname").value.trim();
+    let search_carmaker = document.getElementById("search_carmaker").value.trim();
+    if (history_date_from != '' || history_date_to != '' || search_rfq != '' || search_jigname != '' || search_carmaker !='') {
+        window.open('../../process/export/export_closed_request_history.php?history_date_from='+history_date_from+'&history_date_to='+history_date_to+'&search_rfq='+search_rfq+'&search_jigname='+search_jigname+'&search_carmaker='+search_carmaker,'_blank');
     } else {
         Swal.fire({
             icon: 'info',

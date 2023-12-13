@@ -85,16 +85,29 @@ if ($method == 'fetch_request') {
 				$disable_row = 'disabled';
 				$cursor = 'cursor:pointer';
 				$class_mods = 'modal-trigger" data-toggle="modal" data-target="#cancel_info_modal';
+			} else if ($request_status == 'open') {
+				$disable_row = 'disabled';
+				$cursor = '';
+				$class_mods = '';
+			} else if ($request_status == 'ame3') {
+				$disable_row = 'disabled';
+				$cursor = '';
+				$class_mods = '';
+			} else if ($request_status == 'ame2') {
+				$disable_row = 'disabled';
+				$cursor = '';
+				$class_mods = '';
 			} else {
 				$cursor = "";
-				$class_mods= "";
+				$class_mods = "";
 			}
-		
+
+
 			echo '<input type="checkbox" class="singleCheck bg-secondary" value="' . $j['request_id'] . '" onclick="get_checked_length()" ' . $disable_row . '>';
 			echo '</td>';
 
 			echo '<td style = "' . $color . '">' . $c . '</td>';
-			echo '<td style = " '.$color. $cursor. '"  class="'.$class_mods.'" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] .'~!~' . $j['cancel_section'] .'&quot;)">' . $j['status'] . '</td>';
+			echo '<td style = " ' . $color . $cursor . '"  class="' . $class_mods . '" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] . '~!~' . $j['cancel_section'] . '&quot;)">' . $j['status'] . '</td>';
 			echo '<td style = "' . $color . '">' . $j['carmaker'] . '</td>';
 			echo '<td style = "' . $color . '">' . $j['carmodel'] . '</td>';
 			echo '<td style = "' . $color . '">' . $j['product'] . '</td>';
@@ -114,7 +127,7 @@ if ($method == 'fetch_request') {
 			echo '<td style = "' . $color2 . '">' . $j['rfq_no'] . '</td>';
 			echo '<td style = "' . $color2 . '">' . $j['target_date_reply_quotation'] . '</td>';
 			echo '<td style = "' . $color2 . '">' . $j['item_code'] . '</td>';
-			echo '<td style = "' . $color2. '">' . $j['i_uploaded_by'] . '</td>';
+			echo '<td style = "' . $color2 . '">' . $j['i_uploaded_by'] . '</td>';
 
 			echo '<td style = "' . $color2 . '">' . $j['date_reply_quotation'] . '</td>';
 			echo '<td style = "' . $color2 . '">' . $j['leadtime'] . '</td>';
@@ -127,7 +140,7 @@ if ($method == 'fetch_request') {
 			echo '<td style = "' . $color2 . '">' . $j['fsib_code'] . '</td>';
 			echo '<td style = "' . $color2 . '">' . $j['date_sent_to_internal_signatories'] . '</td>';
 			echo '<td style = "' . $color3 . '">' . $j['target_approval_date_of_quotation'] . '</td>';
-			echo '<td style = "' . $color2. '">' . $j['c_uploaded_by'] . '</td>';
+			echo '<td style = "' . $color2 . '">' . $j['c_uploaded_by'] . '</td>';
 
 			//po
 			echo '<td style = "' . $color3 . '">' . $j['approval_date_of_quotation'] . '</td>';
