@@ -99,7 +99,6 @@ if ($stmt->rowCount() > 0) {
 			$row['eta'],
 			$row['actual_arrival_date'],
 			$row['invoice_no'],
-			// $row['classification'],
 			$row['remarks2'],
 
 		);
