@@ -1,17 +1,23 @@
-<?php 
+<?php
 include '../../process/conn.php';
 $delimiter = ",";
 
 switch (true) {
 	case !isset($_GET['history_date_from']):
 	case !isset($_GET['history_date_to']):
-        echo 'Query Parameters Not Set';
-        exit;
-        break;
+	case !isset($_GET['search_rfq']):
+	case !isset($_GET['search_jigname']):
+	case !isset($_GET['search_carmaker']):
+		echo 'Query Parameters Not Set';
+		exit;
+		break;
 }
 
 $history_date_from = $_GET['history_date_from'];
 $history_date_to = $_GET['history_date_to'];
+$search_rfq = $_GET['search_rfq'];
+$search_jigname = $_GET['search_jigname'];
+$search_carmaker = $_GET['search_carmaker'];
 
 $hdf = new DateTime($history_date_from);
 $history_date_from = date_format($hdf, "Y-m-d h:i:s");
@@ -19,7 +25,7 @@ $history_date_from = date_format($hdf, "Y-m-d h:i:s");
 $hdt = new DateTime($history_date_to);
 $history_date_to = date_format($hdt, "Y-m-d h:i:s");
 
-$filename = "Closed Request History as of ".$history_date_from." to ".$history_date_to.".csv";
+$filename = "Closed Request History as of " . $history_date_from . " to " . $history_date_to . ".csv";
 
 // Create a file pointer 
 $f = fopen('php://memory', 'w');
@@ -28,8 +34,8 @@ $f = fopen('php://memory', 'w');
 fputs($f, "\xEF\xBB\xBF");
 
 // Set column headers 
-$fields = array('Request ID', 'Status', 'Car Maker', 'Car Model', 'Product', 'Jig Name', 'Drawing No', 'Type', 'Qty', 'Purpose', 'Kigyo Budget', 'Date Requested', 'Requested By', 'Required Delivery Date', 'Remarks (fill up if ECT jig is under new design, supplier)', 'Date of Issuance of RFQ', 'RFQ No', 'Target Date of Reply Quotation', 'Item Code', 'Date of Reply Quotation ', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD','Unit Price PHP','Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Date sent to Internal Signatories ', 'Target Approval date of quotation ', 'Approval date of quotation ', 'Target Date Submission to Purchasing ', 'Actual Date of Submission to Purchasing ', 'Target PO Date', 'PO Date ', 'PO No. ', 'Supplier ', 'ETD ', 'ETA ', 'Actual Arrival date ', 'Invoice No ', 'Remarks ');
-$fields_exp = array('Request ID', 'Status', 'Ex. Mazda', 'Ex. J12SRHD', 'Ex.123', 'Ex. DA-123', 'Ex.', 'Ex.Assy jig', 'Ex.123', 'Ex. EV-MP Set up', 'Ex.12345', 'Ex. YYYY-MM-DD', 'Ex. Juan', 'Ex. YYYY-MM-DD', 'Example','Ex. YYYY-MM-DD', 'RFQ No','Ex. YYYY-MM-DD','Item Code','Ex. YYYY-MM-DD', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD','Unit Price PHP', 'Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD','Ex. YYYY-MM-DD', 'PO No. ', 'Supplier ', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Invoice No ', 'Remarks ');
+$fields = array('Request ID', 'Status', 'Car Maker', 'Car Model', 'Product', 'Jig Name', 'Drawing No', 'Type', 'Qty', 'Purpose', 'Kigyo Budget', 'Date Requested', 'Requested By', 'Required Delivery Date', 'Remarks (fill up if ECT jig is under new design, supplier)', 'Date of Issuance of RFQ', 'RFQ No', 'Target Date of Reply Quotation', 'Item Code', 'Date of Reply Quotation ', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Unit Price PHP', 'Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Date sent to Internal Signatories ', 'Target Approval date of quotation ', 'Approval date of quotation ', 'Target Date Submission to Purchasing ', 'Actual Date of Submission to Purchasing ', 'Target PO Date', 'PO Date ', 'PO No. ', 'Supplier ', 'ETD ', 'ETA ', 'Actual Arrival date ', 'Invoice No ', 'Remarks ');
+$fields_exp = array('Request ID', 'Status', 'Ex. Mazda', 'Ex. J12SRHD', 'Ex.123', 'Ex. DA-123', 'Ex.', 'Ex.Assy jig', 'Ex.123', 'Ex. EV-MP Set up', 'Ex.12345', 'Ex. YYYY-MM-DD', 'Ex. Juan', 'Ex. YYYY-MM-DD', 'Example', 'Ex. YYYY-MM-DD', 'RFQ No', 'Ex. YYYY-MM-DD', 'Item Code', 'Ex. YYYY-MM-DD', 'LEADTIME(based on quotation)', 'Quotation No ', 'Unit Price JPY ', 'Unit Price USD', 'Unit Price PHP', 'Total Amount ', 'FSIB No. ', 'FSIB Code ', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'PO No. ', 'Supplier ', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Ex. YYYY-MM-DD', 'Invoice No ', 'Remarks ');
 
 fputcsv($f, $fields, $delimiter);
 fputcsv($f, $fields_exp, $delimiter);
@@ -42,11 +48,11 @@ joms_installation.installation_date
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 	LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id
 	LEFT JOIN joms_installation ON joms_installation.request_id = joms_request.request_id
-	WHERE joms_request.status = 'closed' AND (joms_po_process.date_updated >= '$history_date_from' AND joms_po_process.date_updated <= '$history_date_to')";
+	WHERE joms_request.status = 'closed' AND (joms_po_process.date_updated >= '$history_date_from' AND joms_po_process.date_updated <= '$history_date_to') AND joms_rfq_process.rfq_no LIKE '$search_rfq%' AND joms_request.jigname LIKE '$search_jigname%'  AND joms_request.carmaker LIKE '$search_carmaker%' ";
 
-	$stmt = $conn->prepare($sql);
-	$stmt->execute();
-	if ($stmt->rowCount() > 0) {
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+if ($stmt->rowCount() > 0) {
 	foreach ($stmt->fetchALL() as $row) {
 		$lineData = array(
 			$row['request_id'],
@@ -64,7 +70,7 @@ joms_installation.installation_date
 			$row['requested_by'],
 			$row['required_delivery_date'],
 			$row['remarks'],
-//full rfq
+			//full rfq
 			$row['date_of_issuance_rfq'],
 			$row['rfq_no'],
 			$row['target_date_reply_quotation'],
@@ -76,12 +82,12 @@ joms_installation.installation_date
 			$row['unit_price_usd'],
 			$row['unit_price_php'],
 			$row['total_amount'],
-//rfq+add			
+			//rfq+add			
 			$row['fsib_no'],
 			$row['fsib_code'],
 			$row['date_sent_to_internal_signatories'],
 			$row['target_approval_date_of_quotation'],
-			
+
 			$row['approval_date_of_quotation'],
 			$row['target_date_submission_to_purchasing'],
 			$row['actual_date_of_submission_to_purchasing'],
@@ -99,11 +105,11 @@ joms_installation.installation_date
 			$row['invoice_no'],
 			// $row['classification'],
 			$row['remarks2'],
-			
+
 		);
 		fputcsv($f, $lineData, $delimiter);
 	}
-}else{
+} else {
 	// Output each row of the data, format line as csv and write to file pointer 
 	$lineData = array("NO DATA FOUND");
 	fputcsv($f, $lineData, $delimiter);

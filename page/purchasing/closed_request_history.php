@@ -20,7 +20,6 @@
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -36,20 +35,32 @@
             <div class="card-body">
               <div class="container-fluid">
                 <div class="row mb-2">
-                  <div class="col-sm-3">
+                  <div class="col-lg-2 col-6">
                     <label>History Date From</label>
                     <input type="datetime-local" class="form-control" id="history_date_from">
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-lg-2 col-6">
                     <label>History Date To</label>
                     <input type="datetime-local" class="form-control" id="history_date_to">
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-lg-1 col-6">
+                    <label>RFQ #</label>
+                    <input type="text" class="form-control" id="search_rfq">
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <label>Jig Name</label>
+                    <input type="text" class="form-control" id="search_jigname">
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <label>Carmaker</label>
+                    <input type="text" class="form-control" id="search_carmaker">
+                  </div>
+                  <div class="col-lg-1 col-6">
                     <label>Search</label>
                     <button type="button" class="btn btn-secondary btn-block" onclick="get_closed_request_history()"><i
                         class="fas fa-search"></i> Search</button>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-lg-2 col-12">
                     <label>Export</label>
                     <button type="button" class="btn btn-secondary btn-block"
                       onclick="export_closed_request_history()"><i class="fas fa-download"></i> Export History</button>
