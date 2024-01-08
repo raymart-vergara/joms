@@ -54,7 +54,7 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 if ($stmt->rowCount() > 0) {
 	foreach ($stmt->fetchALL() as $row) {
-		$lineData = array(
+		$lineData = array(	
 			$row['request_id'],
 			$row['status'],
 			$row['carmaker'],
