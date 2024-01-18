@@ -199,7 +199,7 @@
                         $('#cancel_request').modal('hide');
                         $('#cancel_date').val('');
                         $('#cancel_reason').val('');
-                        search_request_with_rfq();
+                        // search_request_with_rfq();
                         filter_rfq_process();
                        
                     }

@@ -25,7 +25,7 @@ joms_rfq_process.date_of_issuance_rfq, joms_rfq_process.rfq_no, joms_rfq_process
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 	-- LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.id
 	-- LEFT JOIN joms_installation ON joms_installation.request_id = joms_request.id
-	WHERE joms_request.status = 'open' AND joms_rfq_process.date_reply_quotation !='' AND joms_rfq_process.leadtime !='' AND joms_rfq_process.quotation_no !='' AND joms_rfq_process.unit_price_jpy !=''AND joms_rfq_process.unit_price_usd !='' AND joms_rfq_process.total_amount !='' ";
+	WHERE joms_request.status = 'open' AND joms_rfq_process.date_reply_quotation !='' AND joms_rfq_process.leadtime !='' AND joms_rfq_process.quotation_no !='' AND joms_rfq_process.unit_price_jpy !=''AND joms_rfq_process.unit_price_usd !=''";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
