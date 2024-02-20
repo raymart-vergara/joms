@@ -158,11 +158,11 @@ if ($method == 'filter_rfq_process') {
 			$date_of_issuance_rfq = $j['date_of_issuance_rfq']; // May 11
 			$restriction_of_issuance_rfq = date('Y-m-d', (strtotime('+2 day', strtotime($date_requested)))); // May 8 + 2 days = May 10
 
-			$date_reply_quotation = $j['date_reply_quotation']; // May 13
+			// $date_reply_quotation = $j['date_reply_quotation']; 
 			$restriction_of_reply_quotation = date('Y-m-d', (strtotime('+14 day', strtotime($restriction_of_issuance_rfq)))); // May 10 + 14 days = May 24
 
 
-			$approval_date_of_quotation = $j['approval_date_of_quotation']; // May 16
+			// $approval_date_of_quotation = $j['approval_date_of_quotation']; 
 			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
 
 			if ($date_of_issuance_rfq == '' && $server_date_only > $restriction_of_issuance_rfq || $date_of_issuance_rfq > $restriction_of_issuance_rfq) {
@@ -221,7 +221,7 @@ if ($method == 'filter_rfq_process') {
 					echo '<td>' . $j['fsib_no'] . '</td>';
 					echo '<td>' . $j['fsib_code'] . '</td>';
 					echo '<td>' . $j['date_sent_to_internal_signatories'] . '</td>';
-					echo '<td>' . $j['target_approval_date_of_quotation'] . '</td>';
+					echo '<td style ="'. $color .'">' . $j['target_approval_date_of_quotation'] . '</td>';
 					echo '<td>' . $j['c_uploaded_by'] . '</td>';
 					if ($rfq_status_search == "open_po") {
 						echo '<td>' . $j['approval_date_of_quotation'] . '</td>';
@@ -243,8 +243,8 @@ if ($method == 'filter_rfq_process') {
 						echo '<td>' . $j['approval_date_of_quotation'] . '</td>';
 						echo '<td>' . $j['target_date_submission_to_purchasing'] . '</td>';
 						echo '<td>' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
-						echo '<td>' . $j['target_po_date'] . '</td>';
-						echo '<td style ="'. $color .'">' . $j['po_date'] . '</td>';
+						echo '<td style ="'. $color .'">' . $j['target_po_date'] . '</td>';
+						echo '<td>' . $j['po_date'] . '</td>';
 						echo '<td>' . $j['po_no'] . '</td>';
 						echo '<td>' . $j['supplier'] . '</td>';
 						echo '<td style ="'. $color .'">' . $j['etd'] . '</td>';
