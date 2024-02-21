@@ -23,6 +23,25 @@ if ($method == 'fetch_requested_processed') {
 		foreach ($stmt->fetchALL() as $j) {
 
 			$c++;
+			$date_requested = $j['date_requested']; // May 8 // server_date_only = Aug 14 (or Date Today)
+			$date_of_issuance_rfq = $j['date_of_issuance_rfq']; // May 11
+			$restriction_of_issuance_rfq = date('Y-m-d', (strtotime('+2 day', strtotime($date_requested)))); // May 8 + 2 days = May 10
+
+			$date_reply_quotation = $j['date_reply_quotation']; // May 13
+			$restriction_of_reply_quotation = date('Y-m-d', (strtotime('+14 day', strtotime($restriction_of_issuance_rfq)))); // May 10 + 14 days = May 24
+
+
+			$approval_date_of_quotation = $j['approval_date_of_quotation']; // May 16
+			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
+
+			if ($date_of_issuance_rfq == '' && $server_date_only > $restriction_of_issuance_rfq || $date_of_issuance_rfq > $restriction_of_issuance_rfq) {
+				$color = "color:red;";
+
+			} else {
+				$color = "";
+			}
+
+
 			echo '<tr>';
 			echo '<td>';
 			$disable_row = '';
@@ -34,7 +53,7 @@ if ($method == 'fetch_requested_processed') {
 			echo '<input type="checkbox" class="singleCheck bg-secondary" value="' . $j['request_id'] . '" onclick="get_checked_length()" ' . $disable_row . '>';
 			echo '</td>';
 			echo '<td>' . $c . '</td>';
-			echo '<td style = " ' . $color . $cursor . '"  class="' . $class_mods . '" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] . '~!~' . $j['cancel_section'] . '&quot;)">' . $j['status'] . '</td>';
+			echo '<td style = " ' . $cursor . '"  class="' . $class_mods . '" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] . '~!~' . $j['cancel_section'] . '&quot;)">' . $j['status'] . '</td>';
 			echo '<td>' . $j['carmaker'] . '</td>';
 			echo '<td>' . $j['carmodel'] . '</td>';
 			echo '<td>' . $j['product'] . '</td>';
@@ -52,7 +71,7 @@ if ($method == 'fetch_requested_processed') {
 
 			echo '<td>' . $j['date_of_issuance_rfq'] . '</td>';
 			echo '<td>' . $j['rfq_no'] . '</td>';
-			echo '<td>' . $j['target_date_reply_quotation'] . '</td>';
+			echo '<td style = "' . $color.'">' . $j['target_date_reply_quotation'] . '</td>';
 			echo '<td>' . $j['item_code'] . '</td>';
 			echo '<td>' . $j['i_uploaded_by'] . '</td>';
 
@@ -135,7 +154,23 @@ if ($method == 'filter_rfq_process') {
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
+			$date_requested = $j['date_requested']; // May 8 // server_date_only = Aug 14 (or Date Today)
+			$date_of_issuance_rfq = $j['date_of_issuance_rfq']; // May 11
+			$restriction_of_issuance_rfq = date('Y-m-d', (strtotime('+2 day', strtotime($date_requested)))); // May 8 + 2 days = May 10
 
+			// $date_reply_quotation = $j['date_reply_quotation']; 
+			$restriction_of_reply_quotation = date('Y-m-d', (strtotime('+14 day', strtotime($restriction_of_issuance_rfq)))); // May 10 + 14 days = May 24
+
+
+			// $approval_date_of_quotation = $j['approval_date_of_quotation']; 
+			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
+
+			if ($date_of_issuance_rfq == '' && $server_date_only > $restriction_of_issuance_rfq || $date_of_issuance_rfq > $restriction_of_issuance_rfq) {
+				$color = "background-color:red;";
+
+			} else {
+				$color = "";
+			}
 			echo '<tr>';
 			echo '<td>';
 			$disable_row = '';
@@ -151,7 +186,7 @@ if ($method == 'filter_rfq_process') {
 			echo '<input type="checkbox" class="singleCheck bg-secondary" value="' . $j['request_id'] . '" onclick="get_checked_length()" ' . $disable_row . '>';
 			echo '</td>';
 			echo '<td>' . $c . '</td>';
-			echo '<td style = " ' . $color . $cursor . '"  class="' . $class_mods . '" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] . '~!~' . $j['cancel_section'] . '&quot;)">' . $j['status'] . '</td>';
+			echo '<td style = " ' . $cursor . '"  class="' . $class_mods . '" onclick="get_cancel_details(&quot;' . $j['request_id'] . '~!~' . $j['cancel_date'] . '~!~' . $j['cancel_reason'] . '~!~' . $j['cancel_by'] . '~!~' . $j['cancel_section'] . '&quot;)">' . $j['status'] . '</td>';
 
 			echo '<td>' . $j['carmaker'] . '</td>';
 			echo '<td>' . $j['carmodel'] . '</td>';
@@ -172,7 +207,7 @@ if ($method == 'filter_rfq_process') {
 			if ($rfq_status_search == "open_initial" || $rfq_status_search == "open_complete" || $rfq_status_search == "open_all" || $rfq_status_search == "open_po" || $rfq_status_search == "cancelled") {
 				echo '<td>' . $j['date_of_issuance_rfq'] . '</td>';
 				echo '<td>' . $j['rfq_no'] . '</td>';
-				echo '<td>' . $j['target_date_reply_quotation'] . '</td>';
+				echo '<td style ="'. $color .'">' . $j['target_date_reply_quotation'] . '</td>';
 				echo '<td>' . $j['item_code'] . '</td>';
 				echo '<td>' . $j['i_uploaded_by'] . '</td>';
 				if ($rfq_status_search == "open_complete" || $rfq_status_search == "open_all" || $rfq_status_search == "open_po" || $rfq_status_search == "cancelled") {
@@ -186,14 +221,14 @@ if ($method == 'filter_rfq_process') {
 					echo '<td>' . $j['fsib_no'] . '</td>';
 					echo '<td>' . $j['fsib_code'] . '</td>';
 					echo '<td>' . $j['date_sent_to_internal_signatories'] . '</td>';
-					echo '<td>' . $j['target_approval_date_of_quotation'] . '</td>';
+					echo '<td style ="'. $color .'">' . $j['target_approval_date_of_quotation'] . '</td>';
 					echo '<td>' . $j['c_uploaded_by'] . '</td>';
 					if ($rfq_status_search == "open_po") {
 						echo '<td>' . $j['approval_date_of_quotation'] . '</td>';
 						echo '<td>' . $j['target_date_submission_to_purchasing'] . '</td>';
-						echo '<td>' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
+						echo '<td style ="'. $color .'">' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
 						echo '<td>' . $j['target_po_date'] . '</td>';
-						echo '<td>' . $j['po_date'] . '</td>';
+						echo '<td style ="'. $color .'">' . $j['po_date'] . '</td>';
 						echo '<td>' . $j['po_no'] . '</td>';
 						// echo '<td>' . $j['ordering_additional_details'] . '</td>';
 						echo '<td>' . $j['supplier'] . '</td>';
@@ -208,12 +243,12 @@ if ($method == 'filter_rfq_process') {
 						echo '<td>' . $j['approval_date_of_quotation'] . '</td>';
 						echo '<td>' . $j['target_date_submission_to_purchasing'] . '</td>';
 						echo '<td>' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
-						echo '<td>' . $j['target_po_date'] . '</td>';
+						echo '<td style ="'. $color .'">' . $j['target_po_date'] . '</td>';
 						echo '<td>' . $j['po_date'] . '</td>';
 						echo '<td>' . $j['po_no'] . '</td>';
 						echo '<td>' . $j['supplier'] . '</td>';
-						echo '<td>' . $j['etd'] . '</td>';
-						echo '<td>' . $j['eta'] . '</td>';
+						echo '<td style ="'. $color .'">' . $j['etd'] . '</td>';
+						echo '<td style ="'. $color .'">' . $j['eta'] . '</td>';
 						echo '<td></td>';
 						echo '<td></td>';
 						echo '<td></td>';

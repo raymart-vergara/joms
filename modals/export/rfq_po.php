@@ -92,6 +92,22 @@
               </a>
             </div>
           </div>
+          <div class="col-lg-6 col-6">
+            <div class="small-box bg-primary text-center">
+              <div class="inner">
+                <!-- <h3>65</h3> -->
+                <h4>Export With <br>All Closed Request</h4>
+              </div>
+              <div class="icon">
+                <i class="fas fa-download" type="button"
+                  onclick="location.replace('../../process/export/export_all_closed_request.php')"></i>
+              </div>
+              <a class="small-box-footer" type="button" class="close" data-dismiss="modal"
+                onclick="location.replace('../../process/export/export_all_closed_request.php')">
+                Export All Closed Status <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

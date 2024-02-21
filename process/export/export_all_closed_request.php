@@ -3,7 +3,7 @@ include '../../process/conn.php';
 $delimiter = ",";
 
 
-$filename = "All Open Request" . ".csv";
+$filename = "Closed Open Request" . ".csv";
 
 // Create a file pointer 
 $f = fopen('php://memory', 'w');
@@ -26,7 +26,7 @@ joms_installation.installation_date
 	LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id
 	LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id
 	LEFT JOIN joms_installation ON joms_installation.request_id = joms_request.request_id
-	WHERE joms_request.status = 'open'";
+	WHERE joms_request.status = 'closed'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 if ($stmt->rowCount() > 0) {
