@@ -3,8 +3,9 @@ session_start();
 // error_reporting(0);
 require '../conn.php';
 
-function validate_date($date) {
-    if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+function validate_date($date)
+{
+    if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date)) {
         return true;
     } else {
         return false;
@@ -24,7 +25,7 @@ function check_csv($file, $conn)
     $hasBlankError = 0;
     $hasBlankErrorArr = array();
 
-    $row_valid_arr = array(0,0);
+    $row_valid_arr = array(0, 0);
 
     $notValidDateOfIssuanceRfq = array();
     $notValidTargetDateReplyQuotation = array();
@@ -65,7 +66,7 @@ function check_csv($file, $conn)
             array_push($notValidTargetDateReplyQuotation, $check_csv_row);
         }
     }
-    
+
     fclose($csvFile);
 
     if ($hasError == 1) {
@@ -133,7 +134,7 @@ if (isset($_POST['upload'])) {
                         $date_i_rfq = str_replace('/', '-', $date_of_issuance_rfq);
                         $date_of_issuance_rfq = date("Y-m-d", strtotime($date_i_rfq));
                     }
-                    
+
                     if (!empty($target_date_reply_quotation)) {
                         $date_tdrq = str_replace('/', '-', $target_date_reply_quotation);
                         $target_date_reply_quotation = date("Y-m-d", strtotime($date_tdrq));

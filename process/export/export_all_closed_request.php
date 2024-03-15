@@ -3,7 +3,7 @@ include '../../process/conn.php';
 $delimiter = ",";
 
 
-$filename = "Closed Open Request" . ".csv";
+$filename = "Closed Request" . ".csv";
 
 // Create a file pointer 
 $f = fopen('php://memory', 'w');
