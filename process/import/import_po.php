@@ -212,10 +212,10 @@ if (isset($_POST['upload'])) {
                     $supplier = $line[36];
                     $etd = $line[37];
                     $eta = $line[38];
-                    $actual_arrival_date = $line[39];
-                    $invoice_no = $line[40];
+                    $invoice_no = $line[39];
+                    $remarks2 = $line[40];
                     // $classification = $line[42];
-                    $remarks2 = $line[41];
+                    $actual_arrival_date = $line[41];
 
                     // CHECK IF BLANK DATA
                     $date_adoq = str_replace('/', '-', $approval_date_of_quotation);
