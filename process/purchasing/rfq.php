@@ -26,11 +26,8 @@ if ($method == 'fetch_requested_processed') {
 			$date_requested = $j['date_requested']; // May 8 // server_date_only = Aug 14 (or Date Today)
 			$date_of_issuance_rfq = $j['date_of_issuance_rfq']; // May 11
 			$restriction_of_issuance_rfq = date('Y-m-d', (strtotime('+2 day', strtotime($date_requested)))); // May 8 + 2 days = May 10
-
 			$date_reply_quotation = $j['date_reply_quotation']; // May 13
 			$restriction_of_reply_quotation = date('Y-m-d', (strtotime('+14 day', strtotime($restriction_of_issuance_rfq)))); // May 10 + 14 days = May 24
-
-
 			$approval_date_of_quotation = $j['approval_date_of_quotation']; // May 16
 			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
 
@@ -40,8 +37,6 @@ if ($method == 'fetch_requested_processed') {
 			} else {
 				$color = "";
 			}
-
-
 			echo '<tr>';
 			echo '<td>';
 			$disable_row = '';
@@ -160,8 +155,6 @@ if ($method == 'filter_rfq_process') {
 
 			// $date_reply_quotation = $j['date_reply_quotation']; 
 			$restriction_of_reply_quotation = date('Y-m-d', (strtotime('+14 day', strtotime($restriction_of_issuance_rfq)))); // May 10 + 14 days = May 24
-
-
 			// $approval_date_of_quotation = $j['approval_date_of_quotation']; 
 			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
 
