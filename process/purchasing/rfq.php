@@ -31,6 +31,39 @@ if ($method == 'fetch_requested_processed') {
 			$approval_date_of_quotation = $j['approval_date_of_quotation']; // May 16
 			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
 
+			$targetReplyQuotation = $j['target_date_reply_quotation'];
+			$dateReplyQuotation = $j['date_reply_quotation'];
+			$targetApprovalDateQuotation = $j['target_approval_date_of_quotation'];
+			$approvalDateQuotation = $j['approval_date_of_quotation'];
+			$actualDateSub = $j['actual_date_of_submission_to_purchasing'];
+			$poDate = $j['po_date'];
+			$etd = $j['etd'];
+			$eta = $j['eta'];
+			$server_date_only;
+
+			$targetReplyQuotation = date('Y-m-d', (strtotime('13 day', strtotime($targetReplyQuotation))));
+			$targetApprovalDateQuotation = date('Y-m-d', (strtotime('3 day', strtotime($targetApprovalDateQuotation))));
+			$actualDateSub = date('Y-m-d', (strtotime('2 day', strtotime($actualDateSub))));
+
+
+
+			if (($targetReplyQuotation < $dateReplyQuotation) || ($dateReplyQuotation == '1970-01-01')) {
+				$targetReplyQuotationColor = "background-color:red;";
+			}
+			if (($targetApprovalDateQuotation < $approvalDateQuotation) || ($approvalDateQuotation == '1970-01-01')) {
+				$targetApprovalDateQuotationColor = "background-color:red;";
+			}
+			if (($actualDateSub < $poDate) || ($poDate == '1970-01-01')) {
+				$poDateColor = "background-color:red;";
+			}
+			if ($etd == $server_date_only) {
+				$etdColor = "background-color:red;";
+			}
+			if ($eta == $server_date_only) {
+				$etaColor = "background-color:red;";
+			}
+
+
 			if ($date_of_issuance_rfq == '' && $server_date_only > $restriction_of_issuance_rfq || $date_of_issuance_rfq > $restriction_of_issuance_rfq) {
 				$color = "color:red;";
 
@@ -66,7 +99,7 @@ if ($method == 'fetch_requested_processed') {
 
 			echo '<td>' . $j['date_of_issuance_rfq'] . '</td>';
 			echo '<td>' . $j['rfq_no'] . '</td>';
-			echo '<td style = "' . $color.'">' . $j['target_date_reply_quotation'] . '</td>';
+			echo '<td style = "' . $targetReplyQuotationColor . '">' . $j['target_date_reply_quotation'] . '</td>';
 			echo '<td>' . $j['item_code'] . '</td>';
 			echo '<td>' . $j['i_uploaded_by'] . '</td>';
 
@@ -80,7 +113,7 @@ if ($method == 'fetch_requested_processed') {
 			echo '<td>' . $j['fsib_no'] . '</td>';
 			echo '<td>' . $j['fsib_code'] . '</td>';
 			echo '<td>' . $j['date_sent_to_internal_signatories'] . '</td>';
-			echo '<td>' . $j['target_approval_date_of_quotation'] . '</td>';
+			echo '<td style = "' . $targetApprovalDateQuotationColor . '">' . $j['target_approval_date_of_quotation'] . '</td>';
 			echo '<td>' . $j['c_uploaded_by'] . '</td>';
 
 			echo '</tr>';
@@ -128,7 +161,7 @@ if ($method == 'filter_rfq_process') {
 	// query from table left joins
 	$query = $query . " FROM joms_request";
 	$query = $query . " LEFT JOIN joms_rfq_process ON joms_rfq_process.request_id = joms_request.request_id ";
-	if ($rfq_status_search == "open_all" || $rfq_status_search == "cancelled"|| $rfq_status_search == "open_po") {
+	if ($rfq_status_search == "open_all" || $rfq_status_search == "cancelled" || $rfq_status_search == "open_po") {
 		$query = $query . " LEFT JOIN joms_po_process ON joms_po_process.request_id = joms_request.request_id ";
 	}
 	// query where clause
@@ -157,6 +190,50 @@ if ($method == 'filter_rfq_process') {
 			$restriction_of_reply_quotation = date('Y-m-d', (strtotime('+14 day', strtotime($restriction_of_issuance_rfq)))); // May 10 + 14 days = May 24
 			// $approval_date_of_quotation = $j['approval_date_of_quotation']; 
 			$restriction_of_approval_date_of_quotation = date('Y-m-d', (strtotime('+7 day', strtotime($restriction_of_reply_quotation)))); // May 24 + 7 days = May 31
+
+			$targetReplyQuotation = $j['target_date_reply_quotation'];
+			$dateReplyQuotation = $j['date_reply_quotation'];
+			$targetApprovalDateQuotation = $j['target_approval_date_of_quotation'];
+			$approvalDateQuotation = $j['approval_date_of_quotation'];
+			$actualDateSub = $j['actual_date_of_submission_to_purchasing'];
+			$poDate = $j['po_date'];
+			$etd = $j['etd'];
+			$eta = $j['eta'];
+			$server_date_only;
+
+			$targetReplyQuotation = date('Y-m-d', (strtotime('13 day', strtotime($targetReplyQuotation))));
+			$targetApprovalDateQuotation = date('Y-m-d', (strtotime('3 day', strtotime($targetApprovalDateQuotation))));
+			$actualDateSub = date('Y-m-d', (strtotime('2 day', strtotime($actualDateSub))));
+
+
+			if (($targetReplyQuotation < $dateReplyQuotation) || ($dateReplyQuotation == '1970-01-01')) {
+				$targetReplyQuotationColor = "background-color:red;";
+			} else {
+				$targetReplyQuotationColor = "";
+			}
+			if (($targetApprovalDateQuotation < $approvalDateQuotation) || ($approvalDateQuotation == '1970-01-01')) {
+				$targetApprovalDateQuotationColor = "background-color:red;";
+			} else {
+				$targetApprovalDateQuotationColor = "";
+			}
+			if (($actualDateSub < $poDate) || ($poDate == '1970-01-01')) {
+				$poDateColor = "background-color:red;";
+			} else {
+				$poDateColor = "";
+			}
+			if ($etd == $server_date_only) {
+				$etdColor = "background-color:red;";
+			} else {
+				$etdColor = "";
+			}
+			if ($eta == $server_date_only) {
+				$etaColor = "background-color:red;";
+			} else {
+				$etaColor = "";
+			}
+
+
+
 
 			if ($date_of_issuance_rfq == '' && $server_date_only > $restriction_of_issuance_rfq || $date_of_issuance_rfq > $restriction_of_issuance_rfq) {
 				$color = "background-color:red;";
@@ -200,7 +277,7 @@ if ($method == 'filter_rfq_process') {
 			if ($rfq_status_search == "open_initial" || $rfq_status_search == "open_complete" || $rfq_status_search == "open_all" || $rfq_status_search == "open_po" || $rfq_status_search == "cancelled") {
 				echo '<td>' . $j['date_of_issuance_rfq'] . '</td>';
 				echo '<td>' . $j['rfq_no'] . '</td>';
-				echo '<td style ="'. $color .'">' . $j['target_date_reply_quotation'] . '</td>';
+				echo '<td style ="' . $targetReplyQuotationColor . '">' . $j['target_date_reply_quotation'] . '</td>';
 				echo '<td>' . $j['item_code'] . '</td>';
 				echo '<td>' . $j['i_uploaded_by'] . '</td>';
 				if ($rfq_status_search == "open_complete" || $rfq_status_search == "open_all" || $rfq_status_search == "open_po" || $rfq_status_search == "cancelled") {
@@ -214,19 +291,19 @@ if ($method == 'filter_rfq_process') {
 					echo '<td>' . $j['fsib_no'] . '</td>';
 					echo '<td>' . $j['fsib_code'] . '</td>';
 					echo '<td>' . $j['date_sent_to_internal_signatories'] . '</td>';
-					echo '<td style ="'. $color .'">' . $j['target_approval_date_of_quotation'] . '</td>';
+					echo '<td style ="' . $targetApprovalDateQuotationColor . '">' . $j['target_approval_date_of_quotation'] . '</td>';
 					echo '<td>' . $j['c_uploaded_by'] . '</td>';
 					if ($rfq_status_search == "open_po") {
 						echo '<td>' . $j['approval_date_of_quotation'] . '</td>';
 						echo '<td>' . $j['target_date_submission_to_purchasing'] . '</td>';
-						echo '<td style ="'. $color .'">' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
+						echo '<td>' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
 						echo '<td>' . $j['target_po_date'] . '</td>';
-						echo '<td style ="'. $color .'">' . $j['po_date'] . '</td>';
+						echo '<td style ="' . $poDateColor . '">' . $j['po_date'] . '</td>';
 						echo '<td>' . $j['po_no'] . '</td>';
 						// echo '<td>' . $j['ordering_additional_details'] . '</td>';
 						echo '<td>' . $j['supplier'] . '</td>';
-						echo '<td>' . $j['etd'] . '</td>';
-						echo '<td>' . $j['eta'] . '</td>';
+						echo '<td style = "' . $etdColor . '">' . $j['etd'] . '</td>';
+						echo '<td style = "' . $etaColor . '">' . $j['eta'] . '</td>';
 						echo '<td>' . $j['invoice_no'] . '</td>';
 						echo '<td>' . $j['remarks2'] . '</td>';
 						echo '<td>' . $j['actual_arrival_date'] . '</td>';
@@ -236,12 +313,12 @@ if ($method == 'filter_rfq_process') {
 						echo '<td>' . $j['approval_date_of_quotation'] . '</td>';
 						echo '<td>' . $j['target_date_submission_to_purchasing'] . '</td>';
 						echo '<td>' . $j['actual_date_of_submission_to_purchasing'] . '</td>';
-						echo '<td style ="'. $color .'">' . $j['target_po_date'] . '</td>';
-						echo '<td>' . $j['po_date'] . '</td>';
+						echo '<td>' . $j['target_po_date'] . '</td>';
+						echo '<td style="' . $poDateColor . '">' . $j['po_date'] . '</td>';
 						echo '<td>' . $j['po_no'] . '</td>';
 						echo '<td>' . $j['supplier'] . '</td>';
-						echo '<td style ="'. $color .'">' . $j['etd'] . '</td>';
-						echo '<td style ="'. $color .'">' . $j['eta'] . '</td>';
+						echo '<td style = "' . $etdColor . '">' . $j['etd'] . '</td>';
+						echo '<td style = "' . $etaColor . '">' . $j['eta'] . '</td>';
 						echo '<td></td>';
 						echo '<td></td>';
 						echo '<td></td>';
