@@ -45,8 +45,8 @@ function check_csv($file, $conn)
 
     $row_valid_arr = array(0, 0);
 
-    $notValidDateRequested = array();
-    $notValidRequiredDeliveryDate = array();
+    // $notValidDateRequested = array();
+    // $notValidRequiredDeliveryDate = array();
 
     $message = "";
     $check_csv_row = 2;
@@ -66,7 +66,7 @@ function check_csv($file, $conn)
         $is_valid_required_delivery_date = validate_date($date_rdd);
 
         // CHECK IF BLANK DATA
-        if ($line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[5] == '' || $line[6] == '' || $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '' || $line[11] == '') {
+        if ($line[0] == '' || $line[1] == '' || $line[2] == '' || $line[3] == '' || $line[5] == '' || $line[6] == '' || $line[7] == '' || $line[8] == '' || $line[9] == '' || $line[10] == '') {
             // IF BLANK DETECTED ERROR
             $hasBlankError++;
             $hasError = 1;
@@ -74,11 +74,11 @@ function check_csv($file, $conn)
         }
 
         // CHECK ROW VALIDATION
-        if ($is_valid_date_requested == false) {
-            $hasError = 1;
-            $row_valid_arr[0] = 1;
-            array_push($notValidDateRequested, $check_csv_row);
-        }
+        // if ($is_valid_date_requested == false) {
+        //     $hasError = 1;
+        //     $row_valid_arr[0] = 1;
+        //     array_push($notValidDateRequested, $check_csv_row);
+        // }
         if ($is_valid_required_delivery_date == false) {
             $hasError = 1;
             $row_valid_arr[1] = 1;
@@ -89,12 +89,12 @@ function check_csv($file, $conn)
     fclose($csvFile);
 
     if ($hasError == 1) {
-        if ($row_valid_arr[0] == 1) {
-            $message = $message . 'Invalid Date Requested on row/s ' . implode(", ", $notValidDateRequested) . '. ';
-        }
-        if ($row_valid_arr[1] == 1) {
-            $message = $message . 'Invalid Required Delivery Date on row/s ' . implode(", ", $notValidRequiredDeliveryDate) . '. ';
-        }
+        // if ($row_valid_arr[0] == 1) {
+        //     $message = $message . 'Invalid Date Requested on row/s ' . implode(", ", $notValidDateRequested) . '. ';
+        // }
+        // if ($row_valid_arr[1] == 1) {
+        //     $message = $message . 'Invalid Required Delivery Date on row/s ' . implode(", ", $notValidRequiredDeliveryDate) . '. ';
+        // }
 
         if ($hasBlankError >= 1) {
             $message = $message . 'Blank Cell Exists on row/s ' . implode(", ", $hasBlankErrorArr) . '. ';
@@ -136,10 +136,9 @@ if (isset($_POST['upload'])) {
                     $qty = $line[6];
                     $purpose = $line[7];
                     $budget = $line[8];
-                    $date_requested = $line[9];
-                    $requested_by = $line[10];
-                    $required_delivery_date = $line[11];
-                    $remarks = $line[12];
+                    $requested_by = $line[9];
+                    $required_delivery_date = $line[10];
+                    $remarks = $line[11];
 
                     $date_r = str_replace('/', '-', $date_requested);
                     $date_requested = date("Y-m-d", strtotime($date_r));
@@ -150,7 +149,7 @@ if (isset($_POST['upload'])) {
                     $request_id = '';
                     $request_id = generate_joms_request_id($request_id);
 
-                    $insert = "INSERT INTO joms_request(`request_id`, `carmaker`, `carmodel`, `product`, `jigname`, `drawing_no`, `type`, `qty`, `purpose`, `budget`, `date_requested`, `requested_by`, `required_delivery_date`, `remarks`, `uploaded_by`, `section`) VALUES ('$request_id','$carmaker','$carmodel','$product','$jigname','$drawing_no','$type','$qty','$purpose','$budget','$date_requested','$requested_by','$required_delivery_date','$remarks','" . $_SESSION['fullname'] . "','" . $_SESSION['section'] . "')";
+                    $insert = "INSERT INTO joms_request(`request_id`, `carmaker`, `carmodel`, `product`, `jigname`, `drawing_no`, `type`, `qty`, `purpose`, `budget`, `date_requested`, `requested_by`, `required_delivery_date`, `remarks`, `uploaded_by`, `section`) VALUES ('$request_id','$carmaker','$carmodel','$product','$jigname','$drawing_no','$type','$qty','$purpose','$budget','$server_date_only','$requested_by','$required_delivery_date','$remarks','" . $_SESSION['fullname'] . "','" . $_SESSION['section'] . "')";
                     $stmt = $conn->prepare($insert);
                     if ($stmt->execute()) {
                         update_notif_count_joms_request($conn);
